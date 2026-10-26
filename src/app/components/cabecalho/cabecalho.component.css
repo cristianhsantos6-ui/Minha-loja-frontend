@@ -1,0 +1,51 @@
+
+/* Configurações gerais da página */
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f7f5f0;
+    color: #263c32;
+  }
+  
+  /* Estrutura principal */
+  .layout {
+    min-height: 100vh;
+  }
+  
+  /* Cabeçalho da loja */
+  .cabecalho {
+    background-color: #203c35;
+    color: #f7f2e8;
+    padding: 22px 40px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* Nome e símbolo da marca */
+  .marca {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  
+  .simbolo {
+    font-size: 38px;
+    color: #d7bd87;
+  }
+  
+  .marca h1 {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+  
+  .marca p {
+    margin: 5px 0 0;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #d7bd87;
+  }
+  
