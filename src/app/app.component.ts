@@ -5,12 +5,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ApiService } from './services/api.service';
 import { Atendimento, Categoria, Pessoa, Produto } from './models/models';
 import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 type Aba = 'inicio' | 'produtos' | 'clientes' | 'atendimentos' | 'categorias';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FormsModule, CabecalhoComponent],
+  imports: [CommonModule, FormsModule, CabecalhoComponent, MenuComponent],
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
