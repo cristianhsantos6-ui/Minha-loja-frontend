@@ -6,12 +6,19 @@ import { ApiService } from './services/api.service';
 import { Atendimento, Categoria, Pessoa, Produto } from './models/models';
 import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { ClientesComponent } from './components/clientes/clientes.component';
 
 type Aba = 'inicio' | 'produtos' | 'clientes' | 'atendimentos' | 'categorias';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FormsModule, CabecalhoComponent, MenuComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    CabecalhoComponent,
+    MenuComponent,
+    ClientesComponent
+  ],
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {

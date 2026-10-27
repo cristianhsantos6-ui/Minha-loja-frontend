@@ -1,0 +1,22 @@
+
+.clientes {
+    padding: 24px;
+    margin: 24px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+  
+  .clientes h2 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #333333;
+    font-size: 24px;
+  }
+  
+  .clientes p {
+    margin-bottom: 0;
+    color: #666666;
+    font-size: 16px;
+  }
+  

@@ -1,4 +1,10 @@
 
+<h1>Teste do sistema</h1>
+
 <app-cabecalho></app-cabecalho>
 
 <app-menu (abaSelecionada)="mudarAba($event)"></app-menu>
+
+<main>
+  <app-clientes *ngIf="aba === 'clientes'"></app-clientes>
+</main>
