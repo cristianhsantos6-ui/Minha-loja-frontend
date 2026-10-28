@@ -20,8 +20,8 @@ export class ApiService {
   atualizarPessoa(id: number, dados: Pessoa): Observable<unknown> { return this.http.put(`${API}/PessoaEndereco/${id}`, dados); }
   excluirPessoa(id: number): Observable<unknown> { return this.http.delete(`${API}/PessoaEndereco/${id}`); }
 
-  atendimentos(): Observable<Atendimento[]> { return this.http.get<Atendimento[]>(`${API}/AtendimentoContoller`); }
-  criarAtendimento(dados: Atendimento): Observable<unknown> { return this.http.post(`${API}/AtendimentoContoller`, dados); }
+  atendimentos(): Observable<Atendimento[]> { return this.http.get<Atendimento[]>(`${API}/Atendimento`); }
+  criarAtendimento(dados: Atendimento): Observable<unknown> { return this.http.post(`${API}/Atendimento`, dados); }
 
   categorias(): Observable<Categoria[]> { return this.http.get<Categoria[]>(`${API}/Categorium`); }
 }
