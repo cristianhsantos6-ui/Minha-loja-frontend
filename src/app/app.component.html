@@ -70,21 +70,10 @@
       </section>
 
       <section *ngIf="aba === 'clientes'">
-        <div class="welcome"><div><p class="eyebrow">RELACIONAMENTO</p><h1>Clientes</h1><p class="muted">Cadastre e consulte os clientes da Minha Loja.</p></div><button class="primary" (click)="mostrarFormCliente = !mostrarFormCliente">＋ Novo cliente</button></div>
-        <div class="toolbar"><label class="search"><span>⌕</span><input [(ngModel)]="pesquisa" placeholder="Pesquisar cliente pelo nome..."></label><button class="secondary" (click)="carregarPessoas()">↻ Atualizar</button></div>
-        <section class="panel form-panel" *ngIf="mostrarFormCliente"><div class="panel-heading"><div><h2>Novo cliente</h2><p>Informe os dados pessoais e um endereço.</p></div><button class="icon-button" (click)="mostrarFormCliente = false">×</button></div>
-          <form class="form-grid" (ngSubmit)="salvarCliente()">
-            <label>Nome completo *<input name="nome" [(ngModel)]="cliente.nome" required></label><label>CPF *<input name="cpf" [(ngModel)]="cliente.cpf" required></label>
-            <label>Data de nascimento *<input name="dataNascimento" type="date" [(ngModel)]="cliente.dataNascimento" required></label><label>Sexo<select name="sexo" [(ngModel)]="cliente.sexo"><option value="">Não informado</option><option value="M">Masculino</option><option value="F">Feminino</option></select></label>
-            <label>E-mail *<input name="email" type="email" [(ngModel)]="cliente.email" required></label><label>Telefone<input name="telefone" [(ngModel)]="cliente.telefone"></label>
-            <label>CEP<input name="cep" [(ngModel)]="cliente.enderecos![0].cep"></label><label>Número<input name="numero" [(ngModel)]="cliente.enderecos![0].numero"></label><label class="full">Complemento<input name="complemento" [(ngModel)]="cliente.enderecos![0].complemento"></label>
-            <div class="form-actions full"><button type="button" class="secondary" (click)="mostrarFormCliente = false">Cancelar</button><button type="submit" class="primary">Salvar cliente</button></div>
-          </form><p class="note">O cadastro de endereço segue os campos disponíveis atualmente no backend: CEP, número e complemento.</p>
-        </section>
-        <section class="panel"><div class="table-wrap"><table><thead><tr><th>CLIENTE</th><th>CPF</th><th>E-MAIL</th><th>TELEFONE</th><th>STATUS</th><th>AÇÕES</th></tr></thead><tbody>
-          <tr *ngFor="let p of pessoasFiltradas"><td><div class="table-product"><div class="person-avatar">{{ (p.nome || '?').charAt(0).toUpperCase() }}</div><div><b>{{ p.nome }}</b><small>Cliente #{{ p.idPessoa ?? p.idpessoa }}</small></div></div></td><td>{{ p.cpf }}</td><td>{{ p.email }}</td><td>{{ p.telefone || '—' }}</td><td><span class="status-tag">{{ p.ativoPessoa || 'Ativo' }}</span></td><td><button class="danger-button" (click)="desativarCliente(p)">Excluir</button></td></tr>
-          <tr *ngIf="pessoasFiltradas.length === 0"><td colspan="6" class="empty">Nenhum cliente encontrado.</td></tr>
-        </tbody></table></div></section>
+        <div class="welcome">
+          <div><p class="eyebrow">RELACIONAMENTO</p><h1>Clientes</h1><p class="muted">Cadastre, consulte, edite e remova clientes da Minha Loja.</p></div>
+        </div>
+        <app-clientes></app-clientes>
       </section>
 
       <section *ngIf="aba === 'categorias'">
