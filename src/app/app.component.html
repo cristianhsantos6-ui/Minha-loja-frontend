@@ -1,10 +1,124 @@
 
-<h1>Teste do sistema</h1>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">✦</div><div><strong>Minha<span>Loja</span></strong><small>SISTEMA DE GESTÃO</small></div></div>
+    <p class="menu-label">MENU PRINCIPAL</p>
+    <button class="nav-item" [class.active]="aba === 'inicio'" (click)="mudarAba('inicio')"><span>⌂</span> Início</button>
+    <button class="nav-item" [class.active]="aba === 'produtos'" (click)="mudarAba('produtos')"><span>◇</span> Produtos e serviços</button>
+    <button class="nav-item" [class.active]="aba === 'clientes'" (click)="mudarAba('clientes')"><span>♙</span> Clientes</button>
+    <button class="nav-item" [class.active]="aba === 'categorias'" (click)="mudarAba('categorias')"><span>▦</span> Categorias</button>
+    <button class="nav-item" [class.active]="aba === 'atendimentos'" (click)="mudarAba('atendimentos')"><span>▤</span> Atendimentos</button>
+    <button class="nav-item" [class.active]="aba === 'loja'" (click)="mudarAba('loja')"><span>🛍</span> Loja virtual</button>
+    <button class="nav-item" [class.active]="aba === 'funcionarios'" (click)="mudarAba('funcionarios')"><span>♧</span> Funcionários</button>
+    <button class="nav-item" [class.active]="aba === 'estoque'" (click)="mudarAba('estoque')"><span>▣</span> Estoque</button>
+    <div class="sidebar-bottom"><div class="avatar">ML</div><div><strong>Minha Loja</strong><small>Área administrativa</small></div></div>
+  </aside>
 
-<app-cabecalho></app-cabecalho>
+  <section class="main-content">
+    <header class="topbar">
+      <div class="breadcrumb">Minha Loja <span>/</span> <b>{{ tituloAba }}</b></div>
+      <div class="top-actions"><span class="status-dot"></span><span>Área administrativa</span><div class="user-circle">ML</div></div>
+    </header>
 
-<app-menu (abaSelecionada)="mudarAba($event)"></app-menu>
+    <main class="page">
+      <div class="alerts" *ngIf="erro || sucesso">
+        <div class="alert error" *ngIf="erro">{{ erro }} <button (click)="erro = ''">×</button></div>
+        <div class="alert success" *ngIf="sucesso">{{ sucesso }} <button (click)="sucesso = ''">×</button></div>
+      </div>
 
-<main>
-  <app-clientes *ngIf="aba === 'clientes'"></app-clientes>
-</main>
+      <section *ngIf="aba === 'inicio'">
+        <div class="welcome"><div><p class="eyebrow">PAINEL GERAL</p><h1>Olá! Bem-vindo à Minha Loja <span>✦</span></h1><p class="muted">Acompanhe as informações principais do seu negócio.</p></div><div class="date-pill">◷ {{ today | date:'dd/MM/yyyy' }}</div></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon lilac">◇</div><div><p>Produtos cadastrados</p><strong>{{ produtos.length }}</strong><small>Itens no catálogo</small></div></article>
+          <article class="stat-card"><div class="stat-icon peach">♙</div><div><p>Clientes</p><strong>{{ pessoas.length }}</strong><small>Clientes cadastrados</small></div></article>
+          <article class="stat-card"><div class="stat-icon mint">▤</div><div><p>Atendimentos</p><strong>{{ atendimentos.length }}</strong><small>Registros no sistema</small></div></article>
+          <article class="stat-card"><div class="stat-icon blue">▦</div><div><p>Categorias</p><strong>{{ categorias.length }}</strong><small>Grupos de produtos</small></div></article>
+        </div>
+        <div class="content-grid">
+          <section class="panel"><div class="panel-heading"><div><h2>Acesso rápido</h2><p>Vá direto para uma área do sistema</p></div><span class="heading-icon">↗</span></div>
+            <button class="quick-action" (click)="mudarAba('produtos')"><span class="quick-icon lilac">◇</span><span><b>Produtos e serviços</b><small>Consultar o catálogo e cadastrar itens</small></span><i>›</i></button>
+            <button class="quick-action" (click)="mudarAba('clientes')"><span class="quick-icon peach">♙</span><span><b>Clientes</b><small>Gerenciar os dados dos clientes</small></span><i>›</i></button>
+            <button class="quick-action" (click)="mudarAba('atendimentos')"><span class="quick-icon mint">▤</span><span><b>Atendimentos</b><small>Consultar e registrar atendimentos</small></span><i>›</i></button>
+            <button class="quick-action" (click)="mudarAba('categorias')"><span class="quick-icon blue">▦</span><span><b>Categorias</b><small>Visualizar categorias cadastradas</small></span><i>›</i></button>
+          </section>
+          <section class="panel"><div class="panel-heading"><div><h2>Itens recentes</h2><p>Produtos disponíveis no catálogo</p></div><button class="text-button" (click)="mudarAba('produtos')">Ver catálogo →</button></div>
+            <div class="mini-product" *ngFor="let p of produtos.slice(0,5)"><div class="product-thumb">◇</div><div class="mini-info"><b>{{ nomeProduto(p) }}</b><small>{{ p.unidade || 'Unidade não informada' }}</small></div><span class="price">{{ precoProduto(p) | currency:'BRL' }}</span></div>
+            <div class="empty" *ngIf="produtos.length === 0">Nenhum produto carregado. Verifique a conexão com a API depois.</div>
+          </section>
+        </div>
+      </section>
+
+      <section *ngIf="aba === 'produtos'">
+        <div class="welcome"><div><p class="eyebrow">CATÁLOGO</p><h1>Produtos e serviços</h1><p class="muted">Consulte os itens cadastrados e mantenha seu catálogo organizado.</p></div><button class="primary" (click)="mostrarFormProduto = !mostrarFormProduto">＋ Novo item</button></div>
+        <div class="toolbar"><label class="search"><span>⌕</span><input [(ngModel)]="pesquisa" placeholder="Pesquisar produto ou serviço..."></label><select [(ngModel)]="filtroCategoria"><option value="">Todas as categorias</option><option *ngFor="let c of categorias" [value]="idCategoria(c)">{{ nomeCategoria(c) }}</option></select><button class="secondary" (click)="carregarProdutos()">↻ Atualizar</button></div>
+        <section class="panel form-panel" *ngIf="mostrarFormProduto"><div class="panel-heading"><div><h2>Novo produto ou serviço</h2><p>Preencha os dados básicos do item.</p></div><button class="icon-button" (click)="mostrarFormProduto = false">×</button></div>
+          <form class="form-grid" (ngSubmit)="salvarProduto()">
+            <label>Nome do item *<input name="item" [(ngModel)]="produto.item" required></label>
+            <label>Categoria *<select name="idCategoria" [(ngModel)]="produto.idCategoria" required><option value="">Selecione</option><option *ngFor="let c of categorias" [value]="idCategoria(c)">{{ nomeCategoria(c) }}</option></select></label>
+            <label>Descrição<input name="descricaoItem" [(ngModel)]="produto.descricaoItem"></label>
+            <label>Preço de custo *<input name="preco" type="number" min="0" step="0.01" [(ngModel)]="produto.preco" required></label>
+            <label>Preço de venda<input name="precoVenda" type="number" min="0" step="0.01" [(ngModel)]="produto.precoVenda"></label>
+            <label>Tipo<select name="tipoItem" [(ngModel)]="produto.tipoItem"><option value="P">Produto</option><option value="S">Serviço</option></select></label>
+            <label>Unidade<input name="unidade" [(ngModel)]="produto.unidade"></label>
+            <div class="form-actions full"><button type="button" class="secondary" (click)="mostrarFormProduto = false">Cancelar</button><button class="primary" type="submit">Salvar item</button></div>
+          </form>
+        </section>
+        <section class="panel"><div class="table-wrap"><table><thead><tr><th>ITEM</th><th>CATEGORIA</th><th>TIPO</th><th>PREÇO</th><th>STATUS</th></tr></thead><tbody>
+          <tr *ngFor="let p of produtosFiltrados"><td><div class="table-product"><div class="product-thumb">◇</div><div><b>{{ nomeProduto(p) }}</b><small>{{ p.descricaoItem || p.iditemNavigation?.descricaoItem || 'Sem descrição' }}</small></div></div></td><td>{{ nomeCategoriaPorId(p.idCategoria ?? p.idcategoria ?? p.iditemNavigation?.idcategoria) }}</td><td><span class="tag">{{ p.tipoItem || p.iditemNavigation?.tipoItem || '—' }}</span></td><td><b>{{ precoProduto(p) | currency:'BRL' }}</b></td><td><span class="status-tag">Cadastrado</span></td></tr>
+          <tr *ngIf="produtosFiltrados.length === 0"><td colspan="5" class="empty">Nenhum item encontrado para essa pesquisa.</td></tr>
+        </tbody></table></div></section>
+      </section>
+
+      <section *ngIf="aba === 'clientes'">
+        <div class="welcome"><div><p class="eyebrow">RELACIONAMENTO</p><h1>Clientes</h1><p class="muted">Cadastre e consulte os clientes da Minha Loja.</p></div><button class="primary" (click)="mostrarFormCliente = !mostrarFormCliente">＋ Novo cliente</button></div>
+        <div class="toolbar"><label class="search"><span>⌕</span><input [(ngModel)]="pesquisa" placeholder="Pesquisar cliente pelo nome..."></label><button class="secondary" (click)="carregarPessoas()">↻ Atualizar</button></div>
+        <section class="panel form-panel" *ngIf="mostrarFormCliente"><div class="panel-heading"><div><h2>Novo cliente</h2><p>Informe os dados pessoais e um endereço.</p></div><button class="icon-button" (click)="mostrarFormCliente = false">×</button></div>
+          <form class="form-grid" (ngSubmit)="salvarCliente()">
+            <label>Nome completo *<input name="nome" [(ngModel)]="cliente.nome" required></label><label>CPF *<input name="cpf" [(ngModel)]="cliente.cpf" required></label>
+            <label>Data de nascimento *<input name="dataNascimento" type="date" [(ngModel)]="cliente.dataNascimento" required></label><label>Sexo<select name="sexo" [(ngModel)]="cliente.sexo"><option value="">Não informado</option><option value="M">Masculino</option><option value="F">Feminino</option></select></label>
+            <label>E-mail *<input name="email" type="email" [(ngModel)]="cliente.email" required></label><label>Telefone<input name="telefone" [(ngModel)]="cliente.telefone"></label>
+            <label>CEP<input name="cep" [(ngModel)]="cliente.enderecos![0].cep"></label><label>Número<input name="numero" [(ngModel)]="cliente.enderecos![0].numero"></label><label class="full">Complemento<input name="complemento" [(ngModel)]="cliente.enderecos![0].complemento"></label>
+            <div class="form-actions full"><button type="button" class="secondary" (click)="mostrarFormCliente = false">Cancelar</button><button type="submit" class="primary">Salvar cliente</button></div>
+          </form><p class="note">O cadastro de endereço segue os campos disponíveis atualmente no backend: CEP, número e complemento.</p>
+        </section>
+        <section class="panel"><div class="table-wrap"><table><thead><tr><th>CLIENTE</th><th>CPF</th><th>E-MAIL</th><th>TELEFONE</th><th>STATUS</th><th>AÇÕES</th></tr></thead><tbody>
+          <tr *ngFor="let p of pessoasFiltradas"><td><div class="table-product"><div class="person-avatar">{{ (p.nome || '?').charAt(0).toUpperCase() }}</div><div><b>{{ p.nome }}</b><small>Cliente #{{ p.idPessoa ?? p.idpessoa }}</small></div></div></td><td>{{ p.cpf }}</td><td>{{ p.email }}</td><td>{{ p.telefone || '—' }}</td><td><span class="status-tag">{{ p.ativoPessoa || 'Ativo' }}</span></td><td><button class="danger-button" (click)="desativarCliente(p)">Excluir</button></td></tr>
+          <tr *ngIf="pessoasFiltradas.length === 0"><td colspan="6" class="empty">Nenhum cliente encontrado.</td></tr>
+        </tbody></table></div></section>
+      </section>
+
+      <section *ngIf="aba === 'categorias'">
+        <div class="welcome"><div><p class="eyebrow">ORGANIZAÇÃO</p><h1>Categorias</h1><p class="muted">Veja os grupos usados para organizar produtos e serviços.</p></div><button class="secondary" (click)="carregarCategorias()">↻ Atualizar</button></div>
+        <section class="panel"><div class="panel-heading"><div><h2>Categorias cadastradas</h2><p>{{ categorias.length }} categoria(s) carregada(s)</p></div><span class="heading-icon">▦</span></div>
+          <div class="category-grid"><article class="category-card" *ngFor="let c of categorias"><div class="category-symbol">▦</div><div><b>{{ nomeCategoria(c) }}</b><small>Código: {{ idCategoria(c) }}</small></div></article><div class="empty" *ngIf="categorias.length === 0">Nenhuma categoria carregada.</div></div>
+        </section><p class="note">A edição e a exclusão serão conectadas depois de confirmarmos os endpoints de categoria disponíveis no backend.</p>
+      </section>
+
+      <section *ngIf="aba === 'atendimentos'">
+        <div class="welcome"><div><p class="eyebrow">OPERAÇÃO</p><h1>Atendimentos</h1><p class="muted">Consulte os atendimentos registrados e inicie um novo registro.</p></div><button class="primary" (click)="mostrarFormAtendimento = !mostrarFormAtendimento">＋ Novo atendimento</button></div>
+        <div class="toolbar"><label class="search"><span>⌕</span><input [(ngModel)]="pesquisa" placeholder="Pesquisar por cliente ou situação..."></label><button class="secondary" (click)="carregarAtendimentos()">↻ Atualizar</button></div>
+        <section class="panel form-panel" *ngIf="mostrarFormAtendimento"><div class="panel-heading"><div><h2>Novo atendimento</h2><p>Preencha os dados principais do atendimento.</p></div><button class="icon-button" (click)="mostrarFormAtendimento = false">×</button></div>
+          <form class="form-grid" (ngSubmit)="salvarAtendimento()"><label>Cliente *<select name="idPessoa" [(ngModel)]="atendimento.idPessoa" required><option [ngValue]="0">Selecione um cliente</option><option *ngFor="let p of pessoas" [ngValue]="p.idPessoa ?? p.idpessoa ?? 0">{{ p.nome }}</option></select></label><label>Data *<input name="dataAtendimento" type="date" [(ngModel)]="atendimento.dataAtendimento" required></label><label>Situação *<select name="statusAtendimento" [(ngModel)]="atendimento.statusAtendimento"><option value="A">Aberto</option><option value="F">Finalizado</option><option value="C">Cancelado</option></select></label><div class="form-actions full"><button type="button" class="secondary" (click)="mostrarFormAtendimento = false">Cancelar</button><button type="submit" class="primary">Registrar atendimento</button></div></form><p class="note">Esta primeira versão registra os dados principais. A inclusão de itens e funcionários será integrada após validarmos o formato aceito pela API.</p>
+        </section>
+        <section class="panel"><div class="table-wrap"><table><thead><tr><th>CÓDIGO</th><th>CLIENTE</th><th>DATA</th><th>SITUAÇÃO</th></tr></thead><tbody>
+          <tr *ngFor="let a of atendimentos"><td>#{{ a.idAtendimento ?? a.idatendimento }}</td><td>{{ a.nomePessoa || nomeCliente(a.idPessoa) }}</td><td>{{ a.dataAtendimento | date:'dd/MM/yyyy' }}</td><td><span class="status-tag">{{ a.statusAtendimento }}</span></td></tr>
+          <tr *ngIf="atendimentos.length === 0"><td colspan="4" class="empty">Nenhum atendimento carregado.</td></tr>
+        </tbody></table></div></section>
+      </section>
+
+      <section *ngIf="aba === 'loja'">
+        <div class="welcome"><div><p class="eyebrow">VITRINE</p><h1>Loja virtual</h1><p class="muted">Uma vitrine simples para visualizar os itens cadastrados.</p></div><span class="date-pill">Catálogo da loja</span></div>
+        <div class="toolbar"><label class="search"><span>⌕</span><input [(ngModel)]="pesquisa" placeholder="Buscar na loja..."></label><select [(ngModel)]="filtroCategoria"><option value="">Todas as categorias</option><option *ngFor="let c of categorias" [value]="idCategoria(c)">{{ nomeCategoria(c) }}</option></select></div>
+        <div class="shop-grid"><article class="shop-card" *ngFor="let p of produtosFiltrados"><div class="shop-art">◇</div><div class="shop-card-body"><span class="tag">{{ p.tipoItem || 'Item' }}</span><h3>{{ nomeProduto(p) }}</h3><p>{{ p.descricaoItem || p.iditemNavigation?.descricaoItem || 'Consulte os detalhes deste item.' }}</p><div class="shop-buy"><b>{{ precoProduto(p) | currency:'BRL' }}</b><button class="primary" (click)="adicionarCarrinho(p)">＋ Carrinho</button></div></div></article><div class="panel empty" *ngIf="produtosFiltrados.length === 0">Nenhum produto disponível no catálogo.</div></div>
+        <section class="panel cart-panel"><div class="panel-heading"><div><h2>Meu carrinho</h2><p>{{ carrinho.length }} item(ns) selecionado(s)</p></div><span class="heading-icon">🛒</span></div><div class="mini-product" *ngFor="let item of carrinho"><div class="mini-info"><b>{{ nomeProduto(item) }}</b><small>{{ precoProduto(item) | currency:'BRL' }}</small></div><button class="danger-button" (click)="removerCarrinho(idProduto(item))">Remover</button></div><div class="cart-total"><span>Total estimado</span><b>{{ totalCarrinho | currency:'BRL' }}</b></div><p class="note">O carrinho é apenas visual nesta etapa. A finalização de pedidos depende dos endpoints de pedido/itens disponíveis no backend.</p></section>
+      </section>
+
+      <section *ngIf="aba === 'funcionarios' || aba === 'estoque'">
+        <div class="welcome"><div><p class="eyebrow">GESTÃO</p><h1>{{ tituloAba }}</h1><p class="muted">Área preparada para a próxima etapa de integração.</p></div></div>
+        <section class="panel"><div class="panel-heading"><div><h2>{{ aba === 'funcionarios' ? 'Equipe de funcionários' : 'Controle de estoque' }}</h2><p>Esta tela será conectada aos endpoints correspondentes.</p></div><span class="heading-icon">{{ aba === 'funcionarios' ? '♧' : '▣' }}</span></div><div class="empty">A interface está preparada. Na etapa de integração, vamos ligar esta área à API sem alterar o backend do professor.</div></section>
+      </section>
+
+      <footer><span>Minha Loja · Sistema de gestão</span><span>Projeto acadêmico SENAI</span></footer>
+    </main>
+  </section>
+</div>
