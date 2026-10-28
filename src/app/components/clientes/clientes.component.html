@@ -1,9 +1,97 @@
+<section class="clientes">
+  <div class="titulo-linha">
+    <div>
+      <h2>Cadastro de clientes</h2>
+      <p>Consulte, cadastre, edite e remova clientes usando a API do backend.</p>
+    </div>
+    <button type="button" class="botao-principal" (click)="novoCadastro()">+ Novo cliente</button>
+  </div>
 
-<select class="clientes">
-      <h2>Cadastro de Clientes</h2>
+  <div *ngIf="erro" class="aviso erro" role="alert">{{ erro }}</div>
+  <div *ngIf="sucesso" class="aviso sucesso" role="status">{{ sucesso }}</div>
 
+  <form *ngIf="mostrarFormulario" #formCliente="ngForm" (ngSubmit)="salvarCliente()" class="formulario">
+    <h3>{{ editandoId ? 'Editar cliente' : 'Novo cliente' }}</h3>
 
-       <p>
-        Cadastro, consulte e gerencie os clientes da sua loja.
-       </p>
-</select>
+    <div class="campos">
+      <label>Nome *
+        <input name="nome" [(ngModel)]="cliente.nome" required maxlength="150">
+      </label>
+      <label>CPF *
+        <input name="cpf" [(ngModel)]="cliente.cpf" required inputmode="numeric" placeholder="Somente números">
+      </label>
+      <label>Data de nascimento *
+        <input name="dataNascimento" [(ngModel)]="cliente.dataNascimento" type="date" required>
+      </label>
+      <label>Sexo *
+        <select name="sexo" [(ngModel)]="cliente.sexo" required>
+          <option value="M">Masculino</option>
+          <option value="F">Feminino</option>
+          <option value="O">Outro</option>
+        </select>
+      </label>
+      <label>E-mail *
+        <input name="email" [(ngModel)]="cliente.email" type="email" required>
+      </label>
+      <label>Telefone *
+        <input name="telefone" [(ngModel)]="cliente.telefone" required inputmode="tel" placeholder="DDD + número">
+      </label>
+      <label>CEP *
+        <input name="cep" [(ngModel)]="cliente.enderecos![0].cep" required inputmode="numeric" placeholder="Somente números">
+      </label>
+      <label>Número *
+        <input name="numero" [(ngModel)]="cliente.enderecos![0].numero" required>
+      </label>
+      <label class="campo-largo">Complemento
+        <input name="complemento" [(ngModel)]="cliente.enderecos![0].complemento">
+      </label>
+    </div>
+
+    <p class="nota">O banco atual armazena CEP, número e complemento. Logradouro, bairro, cidade e UF não fazem parte do modelo de endereço atual.</p>
+
+    <div class="acoes">
+      <button type="button" class="botao-secundario" (click)="cancelar()">Cancelar</button>
+      <button type="submit" class="botao-principal" [disabled]="salvando || formCliente.invalid">
+        {{ salvando ? 'Salvando...' : 'Salvar cliente' }}
+      </button>
+    </div>
+  </form>
+
+  <div class="barra-lista">
+    <label class="pesquisa">Pesquisar cliente
+      <input [(ngModel)]="pesquisa" name="pesquisa" placeholder="Nome, CPF ou e-mail">
+    </label>
+    <button type="button" class="botao-secundario" (click)="carregarClientes()">Atualizar lista</button>
+  </div>
+
+  <p *ngIf="carregando">Carregando clientes da API...</p>
+  <p *ngIf="!carregando && clientesFiltrados.length === 0" class="vazio">Nenhum cliente encontrado.</p>
+
+  <div class="tabela-conteiner" *ngIf="!carregando && clientesFiltrados.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>Nome</th><th>CPF</th><th>E-mail</th><th>Telefone</th><th>Endereço</th><th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of clientesFiltrados">
+          <td>{{ c.idPessoa ?? c.idpessoa }}</td>
+          <td>{{ c.nome }}</td>
+          <td>{{ c.cpf }}</td>
+          <td>{{ c.email }}</td>
+          <td>{{ c.telefone }}</td>
+          <td>
+            <ng-container *ngFor="let e of c.enderecos">
+              {{ e.cep }} — nº {{ e.numero }}<span *ngIf="e.complemento">, {{ e.complemento }}</span>
+            </ng-container>
+          </td>
+          <td class="acoes-tabela">
+            <button type="button" class="botao-secundario" (click)="editarCliente(c)">Editar</button>
+            <button type="button" class="botao-perigo" (click)="excluirCliente(c)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
