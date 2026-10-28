@@ -1,22 +1,110 @@
 
 .clientes {
-    padding: 24px;
-    margin: 24px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  font-family: Arial, sans-serif;
+}
+
+.clientes-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.clientes-cabecalho h2 {
+  margin: 0 0 8px;
+  color: #25213b;
+  font-size: 25px;
+}
+
+.clientes-cabecalho p {
+  margin: 0;
+  color: #77738a;
+  font-size: 14px;
+}
+
+.btn-novo-cliente {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #6d28d9;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-novo-cliente:hover {
+  background-color: #5b21b6;
+}
+
+@media (max-width: 600px) {
+  .clientes-cabecalho {
+    align-items: flex-start;
+    flex-direction: column;
   }
-  
-  .clientes h2 {
-    margin-top: 0;
-    margin-bottom: 12px;
-    color: #333333;
-    font-size: 24px;
-  }
-  
-  .clientes p {
-    margin-bottom: 0;
-    color: #666666;
-    font-size: 16px;
-  }
-  
+}
+
+.formulario-cliente {
+  max-width: 650px;
+  padding: 24px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.formulario-cliente h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #25213b;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.campo label {
+  color: #38334b;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.campo input {
+  padding: 12px;
+  border: 1px solid #d6d3e1;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.campo input:focus {
+  border-color: #6d28d9;
+}
+
+.acoes-formulario {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.btn-cancelar,
+.btn-salvar {
+  padding: 11px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-cancelar {
+  background-color: #f1f0f5;
+  color: #38334b;
+}
+
+.btn-salvar {
+  background-color: #6d28d9;
+  color: white;
+}

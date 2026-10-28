@@ -51,8 +51,5 @@ export interface AtendimentoItem {
 }
 export interface Categoria {
   idcategoria?: number;
-  idCategoria?: number;
-  nomeCategoria?: string;
-  categoria1?: string;
-  nome?: string;
+  categoria: string;
 }

@@ -1,9 +1,82 @@
 
-<select class="clientes">
+<section class="clientes">
+
+  <div class="clientes-cabecalho">
+    <div>
       <h2>Cadastro de Clientes</h2>
+      <p>Cadastre, consulte e gerencie os clientes da sua loja.</p>
+    </div>
 
+    <button
+      type="button"
+      class="btn-novo-cliente"
+      (click)="abrirFormulario()">
+      + Novo Cliente
+    </button>
+  </div>
 
-       <p>
-        Cadastro, consulte e gerencie os clientes da sua loja.
-       </p>
-</select>
+  <p *ngIf="mensagem" class="mensagem-sucesso">
+    {{ mensagem }}
+  </p>
+
+  <p *ngIf="erro" class="mensagem-erro">
+    {{ erro }}
+  </p>
+
+  <div class="formulario-cliente" *ngIf="formularioAberto">
+    <h3>Novo Cliente</h3>
+
+    <div class="campo">
+      <label for="nome">Nome completo</label>
+      <input
+        id="nome"
+        type="text"
+        placeholder="Digite o nome do cliente"
+        [(ngModel)]="novoCliente.nome">
+    </div>
+
+    <div class="campo">
+      <label for="cpf">CPF</label>
+      <input
+        id="cpf"
+        type="text"
+        placeholder="Digite o CPF"
+        [(ngModel)]="novoCliente.cpf">
+    </div>
+
+    <div class="campo">
+      <label for="email">E-mail</label>
+      <input
+        id="email"
+        type="email"
+        placeholder="Digite o e-mail"
+        [(ngModel)]="novoCliente.email">
+    </div>
+
+    <div class="campo">
+      <label for="telefone">Telefone</label>
+      <input
+        id="telefone"
+        type="tel"
+        placeholder="Digite o telefone"
+        [(ngModel)]="novoCliente.telefone">
+    </div>
+
+    <div class="acoes-formulario">
+      <button
+        type="button"
+        class="btn-cancelar"
+        (click)="abrirFormulario()">
+        Cancelar
+      </button>
+
+      <button
+        type="button"
+        class="btn-salvar"
+        (click)="salvarCliente()">
+        Salvar Cliente
+      </button>
+    </div>
+  </div>
+
+</section>
