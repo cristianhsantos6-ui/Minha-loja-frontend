@@ -102,9 +102,32 @@
         <section class="panel cart-panel"><div class="panel-heading"><div><h2>Meu carrinho</h2><p>{{ carrinho.length }} item(ns) selecionado(s)</p></div><span class="heading-icon">🛒</span></div><div class="mini-product" *ngFor="let item of carrinho"><div class="mini-info"><b>{{ nomeProduto(item) }}</b><small>{{ precoProduto(item) | currency:'BRL' }}</small></div><button class="danger-button" (click)="removerCarrinho(idProduto(item))">Remover</button></div><div class="cart-total"><span>Total estimado</span><b>{{ totalCarrinho | currency:'BRL' }}</b></div><p class="note">O carrinho é apenas visual nesta etapa. A finalização de pedidos depende dos endpoints de pedido/itens disponíveis no backend.</p></section>
       </section>
 
-      <section *ngIf="aba === 'funcionarios' || aba === 'estoque'">
-        <div class="welcome"><div><p class="eyebrow">GESTÃO</p><h1>{{ tituloAba }}</h1><p class="muted">Área preparada para a próxima etapa de integração.</p></div></div>
-        <section class="panel"><div class="panel-heading"><div><h2>{{ aba === 'funcionarios' ? 'Equipe de funcionários' : 'Controle de estoque' }}</h2><p>Esta tela será conectada aos endpoints correspondentes.</p></div><span class="heading-icon">{{ aba === 'funcionarios' ? '♧' : '▣' }}</span></div><div class="empty">A interface está preparada. Na etapa de integração, vamos ligar esta área à API sem alterar o backend do professor.</div></section>
+      <section *ngIf="aba === 'funcionarios'">
+        <div class="welcome"><div><p class="eyebrow">EQUIPE</p><h1>Funcionários</h1><p class="muted">Área visual para consultar e organizar a equipe da loja.</p></div><button class="secondary" disabled title="Aguardando confirmação da rota da API">＋ Novo funcionário</button></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon lilac">♧</div><div><p>Equipe cadastrada</p><strong>—</strong><small>Disponível após conectar a API</small></div></article>
+          <article class="stat-card"><div class="stat-icon mint">✓</div><div><p>Status</p><strong>Preparado</strong><small>Interface criada</small></div></article>
+        </div>
+        <section class="panel"><div class="panel-heading"><div><h2>Lista de funcionários</h2><p>A estrutura da tela está pronta para receber os dados do sistema.</p></div><span class="heading-icon">♧</span></div>
+          <div class="empty">Ainda não há uma conexão confirmada com o endpoint de funcionários. Assim que identificarmos a rota e os campos do backend, esta tabela poderá listar, cadastrar e editar funcionários sem inventar dados.</div>
+        </section>
+      </section>
+
+      <section *ngIf="aba === 'estoque'">
+        <div class="welcome"><div><p class="eyebrow">INVENTÁRIO</p><h1>Estoque</h1><p class="muted">Visão dos itens do catálogo e seus dados disponíveis atualmente.</p></div><button class="secondary" (click)="carregarProdutos()">↻ Atualizar catálogo</button></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon lilac">◇</div><div><p>Itens no catálogo</p><strong>{{ produtos.length }}</strong><small>Produtos e serviços retornados pela API</small></div></article>
+          <article class="stat-card"><div class="stat-icon blue">▦</div><div><p>Categorias</p><strong>{{ categorias.length }}</strong><small>Grupos cadastrados</small></div></article>
+          <article class="stat-card"><div class="stat-icon peach">!</div><div><p>Quantidades em estoque</p><strong>—</strong><small>Campo ainda não disponível nesta tela</small></div></article>
+          <article class="stat-card"><div class="stat-icon mint">↻</div><div><p>Atualização</p><strong>API</strong><small>Dados carregados do catálogo</small></div></article>
+        </div>
+        <section class="panel"><div class="panel-heading"><div><h2>Itens cadastrados</h2><p>Esta tabela mostra os itens conhecidos; ela não representa saldo físico de estoque.</p></div></div>
+          <div class="table-wrap"><table><thead><tr><th>ITEM</th><th>CATEGORIA</th><th>TIPO</th><th>PREÇO</th><th>CADASTRO</th></tr></thead><tbody>
+            <tr *ngFor="let p of produtos"><td><div class="table-product"><div class="product-thumb">◇</div><div><b>{{ nomeProduto(p) }}</b><small>{{ p.descricaoItem || p.iditemNavigation?.descricaoItem || 'Sem descrição' }}</small></div></div></td><td>{{ nomeCategoriaPorId(p.idCategoria ?? p.idcategoria ?? p.iditemNavigation?.idcategoria) }}</td><td><span class="tag">{{ p.tipoItem || p.iditemNavigation?.tipoItem || '—' }}</span></td><td><b>{{ precoProduto(p) | currency:'BRL' }}</b></td><td><span class="status-tag">Cadastrado</span></td></tr>
+            <tr *ngIf="produtos.length === 0"><td colspan="5" class="empty">Nenhum item carregado. Verifique a conexão com a API.</td></tr>
+          </tbody></table></div>
+        </section>
+        <p class="note">A quantidade real em estoque depende da tabela/rota de estoque do backend. Não mostramos quantidades fictícias nesta versão.</p>
       </section>
 
       <footer><span>Minha Loja · Sistema de gestão</span><span>Projeto acadêmico SENAI</span></footer>
