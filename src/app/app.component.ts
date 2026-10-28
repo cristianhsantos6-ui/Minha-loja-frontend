@@ -8,7 +8,7 @@ import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
 
-type Aba = 'inicio' | 'produtos' | 'clientes' | 'atendimentos' | 'categorias';
+type Aba = 'inicio' | 'produtos' | 'clientes' | 'atendimentos' | 'categorias' | 'loja' | 'funcionarios' | 'estoque';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
   filtroCategoria = '';
   mostrarFormCliente = false;
   mostrarFormProduto = false;
-  mostrarFormAtendimento = false;
+  mostrarFormAtendimento = false;\n  carrinho: Produto[] = [];\n\n  get tituloAba(): string {\n    const titulos: Record<Aba, string> = { inicio: 'Início', produtos: 'Produtos e serviços', clientes: 'Clientes', atendimentos: 'Atendimentos', categorias: 'Categorias', loja: 'Loja virtual', funcionarios: 'Funcionários', estoque: 'Estoque' };\n    return titulos[this.aba];\n  }\n\n  get totalCarrinho(): number { return this.carrinho.reduce((total, item) => total + this.precoProduto(item), 0); }
 
   cliente: Pessoa = this.novoCliente();
   produto: any = this.novoProduto();
@@ -120,7 +120,7 @@ export class AppComponent implements OnInit {
   nomeProduto(p: Produto): string { return p.item ?? p.item1 ?? p.iditemNavigation?.item1 ?? `Item ${p.iditem ?? p.idItem ?? ''}`; }
   precoProduto(p: Produto): number { return Number(p.precoVenda ?? p.preco ?? p.iditemNavigation?.preco ?? 0); }
   idProduto(p: Produto): number { return Number(p.iditem ?? p.idItem ?? 0); }
-  idCategoria(c: Categoria): number { return Number(c.idcategoria ?? c.idCategoria ?? 0); }
+  idCategoria(c: Categoria): number { return Number(c.idcategoria ?? c.idCategoria ?? 0); }\n  nomeCategoriaPorId(id: unknown): string {\n    const categoria = this.categorias.find(c => this.idCategoria(c) === Number(id));\n    return categoria ? this.nomeCategoria(categoria) : '—';\n  }\n  adicionarCarrinho(p: Produto): void { this.carrinho = [...this.carrinho, p]; this.sucesso = `${this.nomeProduto(p)} adicionado ao carrinho.`; }\n  removerCarrinho(id: number): void { const indice = this.carrinho.findIndex(p => this.idProduto(p) === id); if (indice >= 0) this.carrinho = this.carrinho.filter((_, i) => i !== indice); }
   nomeCategoria(c: Categoria): string { return c.nomeCategoria ?? c.categoria1 ?? c.nome ?? `Categoria ${this.idCategoria(c)}`; }
   nomeCliente(id: number): string { return this.pessoas.find(p => Number(p.idpessoa ?? p.idPessoa) === id)?.nome ?? `Cliente #${id}`; }
   private tratarErro(e: HttpErrorResponse, mensagem: string): void {
