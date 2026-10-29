@@ -1,0 +1,102 @@
+
+:host {
+    display: block;
+  }
+  
+  .produtos {
+    padding: 10px 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #263c32;
+  }
+  
+  .produtos-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 25px;
+  }
+  
+  .produtos-cabecalho h2 {
+    margin: 0 0 8px;
+    font-size: 25px;
+  }
+  
+  .produtos-cabecalho p {
+    margin: 0;
+    color: #777;
+    font-size: 14px;
+  }
+  
+  .produtos-cabecalho button {
+    padding: 11px 16px;
+    border: 0;
+    border-radius: 8px;
+    background: #203c35;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .produtos-cabecalho button:hover {
+    background: #31584d;
+  }
+  
+  .lista-produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+  }
+  
+  .produto-card {
+    padding: 20px;
+    border: 1px solid #e6e3dc;
+    border-radius: 12px;
+    background: white;
+  }
+  
+  .produto-card h3 {
+    margin: 0 0 16px;
+    font-size: 17px;
+  }
+  
+  .produto-card p {
+    margin: 10px 0;
+    color: #686868;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+  
+  .produto-card strong {
+    color: #263c32;
+  }
+  
+  .mensagem-erro {
+    color: #b42318;
+  }
+  
+  @media (max-width: 600px) {
+    .produtos-cabecalho {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  .acoes-produtos {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .acoes-produtos button {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    background-color: #203c35;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .acoes-produtos button:hover {
+    background-color: #31574c;
+  }
+  

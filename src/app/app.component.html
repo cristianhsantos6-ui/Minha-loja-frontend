@@ -1,8 +1,34 @@
 
-<app-cabecalho></app-cabecalho>
+<div class="app-shell">
+  <app-cabecalho></app-cabecalho>
 
-<app-menu (abaSelecionada)="mudarAba($event)"></app-menu>
+  <div class="layout-principal">
+    <aside class="sidebar">
+      <app-menu
+        (abaSelecionada)="mudarAba($event)">
+      </app-menu>
+    </aside>
 
-<main>
-  <app-clientes *ngIf="aba === 'clientes'"></app-clientes>
-</main>
+    <main class="main-content">
+      <div class="page">
+
+       
+        <section *ngIf="aba === 'inicio'">
+          <h2>Bem-vindo à Essenza</h2>
+          <p>Estética, bem-estar e gestão em um só lugar.</p>
+        </section>
+
+       
+        <app-produtos
+          *ngIf="aba === 'produtos'">
+        </app-produtos>
+
+      
+        <app-clientes
+          *ngIf="aba === 'clientes'">
+        </app-clientes>
+
+      </div>
+    </main>
+  </div>
+</div>

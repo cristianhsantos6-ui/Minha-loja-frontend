@@ -15,6 +15,9 @@ import {
 import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
+import { ProdutosComponent } from './components/produtos/produtos.component';
+
+
 
 type Aba =
   | 'inicio'
@@ -31,7 +34,8 @@ type Aba =
     FormsModule,
     CabecalhoComponent,
     MenuComponent,
-    ClientesComponent
+    ClientesComponent,
+    ProdutosComponent
   ],
   templateUrl: './app.component.html'
 })

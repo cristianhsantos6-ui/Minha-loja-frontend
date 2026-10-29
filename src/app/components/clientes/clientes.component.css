@@ -1,62 +1,68 @@
 
 .clientes {
-  padding: 25px;
+  padding: 28px;
   font-family: Arial, sans-serif;
+  color: #25213b;
 }
 
 .clientes-cabecalho {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 15px;
-  margin-bottom: 25px;
+  gap: 18px;
+  margin-bottom: 28px;
 }
 
 .clientes-cabecalho h2 {
   margin: 0 0 8px;
+  font-size: 26px;
   color: #25213b;
-  font-size: 25px;
 }
 
 .clientes-cabecalho p {
   margin: 0;
   color: #77738a;
   font-size: 14px;
+  line-height: 1.5;
+}
+
+.btn-novo-cliente,
+.btn-salvar {
+  background: #6d28d9;
+  color: #fff;
 }
 
 .btn-novo-cliente {
   padding: 12px 18px;
   border: none;
-  border-radius: 8px;
-  background-color: #6d28d9;
-  color: white;
+  border-radius: 9px;
   font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
 }
 
-.btn-novo-cliente:hover {
-  background-color: #5b21b6;
-}
-
-@media (max-width: 600px) {
-  .clientes-cabecalho {
-    align-items: flex-start;
-    flex-direction: column;
-  }
+.btn-novo-cliente:hover,
+.btn-salvar:hover {
+  background: #5b21b6;
+  transform: translateY(-1px);
 }
 
 .formulario-cliente {
-  max-width: 650px;
-  padding: 24px;
-  background-color: #ffffff;
+  max-width: 700px;
+  margin-bottom: 30px;
+  padding: 25px;
+  background: #fff;
   border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(37, 33, 59, 0.05);
 }
 
-.formulario-cliente h3 {
-  margin-top: 0;
-  margin-bottom: 20px;
+.formulario-cliente h3,
+.lista-clientes > h3 {
+  margin: 0 0 20px;
   color: #25213b;
+  font-size: 19px;
 }
 
 .campo {
@@ -72,39 +78,162 @@
   font-weight: bold;
 }
 
-.campo input {
+.campo input,
+.campo select {
+  box-sizing: border-box;
+  width: 100%;
   padding: 12px;
   border: 1px solid #d6d3e1;
   border-radius: 8px;
+  background: #fff;
+  color: #25213b;
   font-size: 14px;
   outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.campo input:focus {
+.campo input:focus,
+.campo select:focus {
   border-color: #6d28d9;
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
 }
 
 .acoes-formulario {
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: 24px;
 }
 
 .btn-cancelar,
 .btn-salvar {
-  padding: 11px 16px;
+  padding: 11px 17px;
   border: none;
   border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
 .btn-cancelar {
-  background-color: #f1f0f5;
+  background: #f1f0f5;
   color: #38334b;
 }
 
-.btn-salvar {
-  background-color: #6d28d9;
-  color: white;
+.btn-cancelar:hover {
+  background: #e5e2ed;
+}
+
+.lista-clientes {
+  margin-top: 28px;
+}
+
+.cliente-card {
+  margin-bottom: 15px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #e8e5ef;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(37, 33, 59, 0.04);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.cliente-card:hover {
+  box-shadow: 0 6px 18px rgba(37, 33, 59, 0.09);
+  transform: translateY(-2px);
+}
+
+.cliente-card h4 {
+  margin: 0 0 14px;
+  color: #4c1d95;
+  font-size: 17px;
+}
+
+.cliente-card p {
+  margin: 8px 0;
+  color: #625d73;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.cliente-card strong {
+  color: #38334b;
+}
+
+.btn-editar,
+.btn-excluir {
+  margin-top: 12px;
+  margin-right: 8px;
+  padding: 9px 14px;
+  border: none;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-editar {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+.btn-editar:hover {
+  background: #ddd6fe;
+}
+
+.btn-excluir {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.btn-excluir:hover {
+  background: #fecaca;
+}
+
+.mensagem-sucesso,
+.mensagem-erro {
+  margin: 0 0 18px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.mensagem-sucesso {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.mensagem-erro {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+@media (max-width: 600px) {
+  .clientes {
+    padding: 16px;
+  }
+
+  .clientes-cabecalho {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .btn-novo-cliente {
+    align-self: flex-start;
+  }
+
+  .formulario-cliente {
+    padding: 18px;
+  }
+
+  .acoes-formulario {
+    flex-direction: column;
+  }
+
+  .acoes-formulario button {
+    width: 100%;
+  }
 }

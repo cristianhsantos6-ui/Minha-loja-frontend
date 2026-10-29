@@ -1,0 +1,174 @@
+
+<section class="produtos">
+
+  <div class="produtos-cabecalho">
+    <div>
+      <h2>Produtos</h2>
+      <p>Consulte os produtos cadastrados na sua loja.</p>
+    </div>
+
+    <div class="acoes-produtos">
+      <button
+        type="button"
+        (click)="mostrarFormulario = !mostrarFormulario">
+        {{ mostrarFormulario ? 'Cancelar cadastro' : '+ Novo produto' }}
+      </button>
+
+      <button type="button" (click)="carregarProdutos()">
+        Atualizar lista
+      </button>
+    </div>
+  </div>
+
+  <!-- FORMULÁRIO DE CADASTRO -->
+  <div class="formulario-produto" *ngIf="mostrarFormulario">
+
+    <h3>Novo produto</h3>
+
+    <form (ngSubmit)="salvarProduto()">
+
+      <label for="item">Nome do produto</label>
+      <input
+        id="item"
+        type="text"
+        name="item"
+        [(ngModel)]="novoProduto.Item"
+        required
+      />
+
+      <label for="descricao">Descrição</label>
+      <input
+        id="descricao"
+        type="text"
+        name="descricao"
+        [(ngModel)]="novoProduto.DescricaoItem"
+      />
+
+      <label for="categoria">ID da categoria</label>
+      <input
+        id="categoria"
+        type="number"
+        name="categoria"
+        [(ngModel)]="novoProduto.Idcategoria"
+        required
+        min="1"
+      />
+
+      <label for="preco">Preço de custo</label>
+      <input
+        id="preco"
+        type="number"
+        name="preco"
+        [(ngModel)]="novoProduto.Preco"
+        required
+        min="0"
+        step="0.01"
+      />
+
+      <label for="precoVenda">Preço de venda</label>
+      <input
+        id="precoVenda"
+        type="number"
+        name="precoVenda"
+        [(ngModel)]="novoProduto.PrecoVenda"
+        required
+        min="0"
+        step="0.01"
+      />
+
+      <label for="codigoPreco">Código do preço</label>
+      <input
+        id="codigoPreco"
+        type="number"
+        name="codigoPreco"
+        [(ngModel)]="novoProduto.CodigoPreco"
+        required
+        min="1"
+      />
+
+      <label for="tipoItem">Tipo do item</label>
+      <select
+        id="tipoItem"
+        name="tipoItem"
+        [(ngModel)]="novoProduto.TipoItem"
+        required>
+        <option value="P">Produto</option>
+        <option value="S">Serviço</option>
+      </select>
+
+      <label for="unidade">Unidade</label>
+      <input
+        id="unidade"
+        type="text"
+        name="unidade"
+        [(ngModel)]="novoProduto.Unidade"
+        placeholder="Ex.: UN"
+      />
+
+      <div class="campo-checkbox">
+        <input
+          id="ativo"
+          type="checkbox"
+          name="ativo"
+          [(ngModel)]="produtoAtivo"
+        />
+        <label for="ativo">Produto ativo</label>
+      </div>
+
+      <button type="submit" [disabled]="salvando">
+        {{ salvando ? 'Salvando...' : 'Salvar produto' }}
+      </button>
+
+      <button
+        type="button"
+        (click)="mostrarFormulario = false">
+        Cancelar
+      </button>
+
+    </form>
+  </div>
+
+  <!-- MENSAGENS -->
+  <p *ngIf="carregando">Carregando produtos...</p>
+
+  <p *ngIf="erro" class="mensagem-erro">
+    {{ erro }}
+  </p>
+
+  <!-- LISTA DE PRODUTOS -->
+  <div class="lista-produtos" *ngIf="!carregando && !erro">
+
+    <p *ngIf="produtos.length === 0">
+      Nenhum produto cadastrado.
+    </p>
+
+    <article class="produto-card" *ngFor="let produto of produtos">
+
+      <h3>
+        {{ produto.item || produto.item1 || produto.iditemNavigation?.item1 || 'Produto sem nome' }}
+      </h3>
+
+      <p>
+        <strong>Descrição:</strong>
+        {{ produto.descricaoItem || produto.iditemNavigation?.descricaoItem || 'Sem descrição' }}
+      </p>
+
+      <p>
+        <strong>Preço:</strong>
+        {{ (produto.precoVenda ?? produto.preco ?? produto.iditemNavigation?.preco ?? 0) | currency:'BRL':'symbol':'1.2-2' }}
+      </p>
+
+      <p>
+        <strong>Tipo:</strong>
+        {{ produto.tipoItem || produto.iditemNavigation?.tipoItem || 'Não informado' }}
+      </p>
+
+      <p>
+        <strong>Unidade:</strong>
+        {{ produto.unidade || 'Não informada' }}
+      </p>
+
+    </article>
+  </div>
+
+</section>

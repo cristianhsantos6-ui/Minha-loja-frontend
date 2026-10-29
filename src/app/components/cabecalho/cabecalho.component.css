@@ -1,51 +1,60 @@
 
-/* Configurações gerais da página */
+:host {
+  display: block;
+  width: 100%;
+}
+
 * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: #f7f5f0;
-    color: #263c32;
-  }
-  
-  /* Estrutura principal */
-  .layout {
-    min-height: 100vh;
-  }
-  
-  /* Cabeçalho da loja */
+  box-sizing: border-box;
+}
+
+.cabecalho {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 86px;
+  padding: 14px 30px;
+  background: #026a2f;
+  color: #f7f2e8;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.simbolo {
+  font-size: 38px;
+  line-height: 1;
+  color: #d7bd87;
+}
+
+.marca h1 {
+  margin: 0;
+  font-size: 27px;
+  letter-spacing: 1px;
+}
+
+.marca p {
+  margin: 5px 0 0;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #d7bd87;
+}
+
+@media (max-width: 600px) {
   .cabecalho {
-    background-color: #203c35;
-    color: #f7f2e8;
-    padding: 22px 40px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+    min-height: 75px;
+    padding: 12px 18px;
   }
-  
-  /* Nome e símbolo da marca */
-  .marca {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  
+
   .simbolo {
-    font-size: 38px;
-    color: #d7bd87;
+    font-size: 32px;
   }
-  
+
   .marca h1 {
-    margin: 0;
-    font-size: 28px;
-    letter-spacing: 1px;
+    font-size: 23px;
   }
-  
-  .marca p {
-    margin: 5px 0 0;
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: #d7bd87;
-  }
-  
+}
