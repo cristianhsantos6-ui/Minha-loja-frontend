@@ -1,0 +1,41 @@
+.container-carrinho {
+    padding: 24px;
+    color: #333;
+  }
+  
+  .container-carrinho h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .container-carrinho table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: white;
+  }
+  
+  .container-carrinho th,
+  .container-carrinho td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .container-carrinho th {
+    background-color: #f0f3f0;
+  }
+  
+  .container-carrinho tr:hover {
+    background-color: #f8faf8;
+  }
+  
+  .container-carrinho h3 {
+    margin-top: 20px;
+    text-align: right;
+    color: #55745e;
+  }
+  
+  .container-carrinho p {
+    color: #777;
+  }

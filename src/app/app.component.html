@@ -20,10 +20,52 @@
 
        
         <app-produtos
-          *ngIf="aba === 'produtos'">
-        </app-produtos>
+  *ngIf="aba === 'produtos'"
+  (adicionarCarrinho)="adicionarItemCarrinho($event)">
+</app-produtos>
 
       
+        <app-servicos *ngIf="aba === 'servicos'"></app-servicos>
+
+        <section *ngIf="aba === 'carrinho'">
+
+          <h2>Finalizar compra</h2>
+        
+          <label for="clienteCompra">Selecione o cliente:</label>
+        
+          <select
+            id="clienteCompra"
+            name="clienteCompra"
+            [(ngModel)]="clienteSelecionado">
+        
+            <option [ngValue]="null">Selecione um cliente</option>
+        
+            <option
+              *ngFor="let pessoa of pessoas"
+              [ngValue]="pessoa.idPessoa">
+              {{ pessoa.nome }}
+            </option>
+        
+          </select>
+        
+          <app-carrinho
+            [itens]="itensCarrinho"
+            (alterarQuantidade)="atualizarQuantidadeCarrinho($event)"
+            (removerItem)="removerItemCarrinho($event)">
+          </app-carrinho>
+        
+          <button
+            type="button"
+            (click)="finalizarCompra()"
+            [disabled]="itensCarrinho.length === 0">
+            Finalizar compra
+          </button>
+        
+        </section>
+
+
+
+        
         <app-clientes
           *ngIf="aba === 'clientes'">
         </app-clientes>

@@ -1,0 +1,101 @@
+<div class="container-servicos">
+
+    <h2>Gerenciar Serviços</h2>
+  
+    <button (click)="mostrarFormulario = !mostrarFormulario">
+      Novo Serviço
+    </button>
+  
+    <div *ngIf="mostrarFormulario">
+      <h3>{{ servicoEmEdicao ? 'Editar Serviço' : 'Cadastrar Serviço' }}</h3>
+  
+      <label>Nome:</label>
+      <input
+        type="text"
+        [(ngModel)]="novoServico.Item"
+        placeholder="Nome do serviço"
+      >
+  
+      <label>Descrição:</label>
+      <input
+        type="text"
+        [(ngModel)]="novoServico.DescricaoItem"
+        placeholder="Descrição do serviço"
+      >
+  
+      <label>Preço:</label>
+      <input
+        type="number"
+        [(ngModel)]="novoServico.Preco"
+      >
+  
+      <label>Categoria:</label>
+      <select [(ngModel)]="novoServico.Idcategoria">
+        <option [ngValue]="0">Selecione uma categoria</option>
+        <option
+          *ngFor="let categoria of categorias"
+          [ngValue]="categoria.idcategoria"
+        >
+          {{ categoria.categoria }}
+        </option>
+      </select>
+  
+      <button (click)="salvarServico()" [disabled]="salvando">
+        {{ salvando ? 'Salvando...' : 'Salvar' }}
+      </button>
+  
+      <button (click)="limparFormulario(); mostrarFormulario = false">
+        Cancelar
+      </button>
+    </div>
+  
+    <p *ngIf="erro">{{ erro }}</p>
+    <p *ngIf="carregando">Carregando serviços...</p>
+  
+    <h3>Lista de Serviços</h3>
+  
+    <p *ngIf="!carregando && servicos.length === 0">
+      Nenhum serviço cadastrado.
+    </p>
+  
+    <table *ngIf="servicos.length > 0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Preço</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <tr *ngFor="let servico of servicos">
+          <td>{{ servico.iditem }}</td>
+          <td>{{ servico.item1 || servico.item }}</td>
+          <td>{{ servico.descricaoItem }}</td>
+          <td>{{ servico.preco | currency:'BRL' }}</td>
+          <td>
+            {{ servico.ativoProdutoServico === 'S' ? 'Ativo' : 'Inativo' }}
+          </td>
+          <td>
+            <button
+              *ngIf="servico.ativoProdutoServico === 'S'"
+              (click)="editarServico(servico)"
+            >
+              Editar
+            </button>
+  
+            <button
+              *ngIf="servico.ativoProdutoServico === 'S'"
+              (click)="desativarServico(servico.iditem!)"
+            >
+              Desativar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+  </div>

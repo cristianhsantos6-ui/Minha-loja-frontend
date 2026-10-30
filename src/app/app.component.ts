@@ -16,7 +16,9 @@ import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { ProdutosComponent } from './components/produtos/produtos.component';
-
+import { ServicosComponent } from './servicos/servicos.component';
+import { CarrinhoComponent } from './components/carrinho/carrinho.component';
+import { ItemCarrinho } from './models/models';
 
 
 type Aba =
@@ -24,7 +26,9 @@ type Aba =
   | 'produtos'
   | 'clientes'
   | 'atendimentos'
-  | 'categorias';
+  | 'categorias'
+  | 'servicos'
+  | 'carrinho';
 
 @Component({
   selector: 'app-root',
@@ -35,7 +39,9 @@ type Aba =
     CabecalhoComponent,
     MenuComponent,
     ClientesComponent,
-    ProdutosComponent
+    ProdutosComponent,
+    ServicosComponent,
+    CarrinhoComponent
   ],
   templateUrl: './app.component.html'
 })
@@ -48,6 +54,10 @@ export class AppComponent implements OnInit {
   pessoas: Pessoa[] = [];
   atendimentos: Atendimento[] = [];
   categorias: Categoria[] = [];
+  itensCarrinho: ItemCarrinho[] = [];
+  clienteSelecionado: number | null = null;
+
+
 
   carregando = false;
   erro = '';
@@ -70,7 +80,86 @@ export class AppComponent implements OnInit {
     this.carregarResumo();
   }
 
+// Verifica se o item já está no carrinho.
+  adicionarItemCarrinho(item: ItemCarrinho): void {
+    const existente = this.itensCarrinho.find(
+      x => x.iditem === item.iditem && x.tipo === item.tipo
+    );
   
+    if (existente) {
+      existente.quantidade += 1;
+    } else {
+      this.itensCarrinho.push(item);
+    }
+  
+    this.sucesso = `${item.nome} adicionado ao carrinho.`;
+  }
+
+
+  //Procura no carrinho o item pelo iditem.
+  atualizarQuantidadeCarrinho(evento: { iditem: number; quantidade: number }): void {
+    const item = this.itensCarrinho.find(
+      x => x.iditem === evento.iditem
+    );
+  
+    if (item) {
+      item.quantidade = evento.quantidade;
+    }
+  }
+
+  removerItemCarrinho(iditem: number): void {
+    this.itensCarrinho = this.itensCarrinho.filter(
+      item => item.iditem !== iditem
+    );
+  }
+  finalizarCompra(): void {
+
+    if (this.clienteSelecionado === null) {
+      this.erro = 'Selecione um cliente antes de finalizar a compra.';
+      return;
+    }
+  
+    if (this.itensCarrinho.length === 0) {
+      this.erro = 'Adicione pelo menos um item ao carrinho.';
+      return;
+    }
+  
+    const hoje = new Date();
+    const dataAtual = [
+      hoje.getFullYear(),
+      String(hoje.getMonth() + 1).padStart(2, '0'),
+      String(hoje.getDate()).padStart(2, '0')
+    ].join('-');
+  
+    const dados = {
+      idPessoa: this.clienteSelecionado,
+      dataAtendimento: dataAtual,
+      statusAtendimento: 'A',
+      itens: this.itensCarrinho.map(item => ({
+        idItem: item.iditem,
+        idFuncionario: 1,
+        quantidade: item.quantidade,
+        valorUnitario: item.preco
+      }))
+    };
+  
+    this.erro = '';
+    this.sucesso = '';
+  
+    this.api.criarAtendimento(dados as Atendimento).subscribe({
+      next: () => {
+        this.sucesso = 'Compra finalizada com sucesso!';
+        this.itensCarrinho = [];
+        this.clienteSelecionado = null;
+        this.carregarAtendimentos();
+      },
+      error: (erro: HttpErrorResponse) => {
+        this.erro = erro.error?.mensagem
+          || 'Não foi possível finalizar a compra.';
+        console.error('Erro ao finalizar compra:', erro);
+      }
+    });
+  }
   // FILTROS
   
 

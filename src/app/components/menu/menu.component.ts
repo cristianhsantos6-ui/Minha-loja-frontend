@@ -1,7 +1,7 @@
 
 import { Component, Output, EventEmitter } from '@angular/core';
 
-export type Aba = 'inicio' | 'produtos' | 'clientes' | 'atendimentos' | 'categorias';
+export type Aba = 'inicio' | 'produtos' | 'clientes' | 'atendimentos' | 'categorias'  | 'servicos' | 'carrinho';
 
 @Component({
   selector: 'app-menu',

@@ -10,8 +10,8 @@
     <div class="acoes-produtos">
       <button
         type="button"
-        (click)="mostrarFormulario = !mostrarFormulario">
-        {{ mostrarFormulario ? 'Cancelar cadastro' : '+ Novo produto' }}
+        (click)="limparFormulario(); mostrarFormulario = !mostrarFormulario">
+        {{ mostrarFormulario ? 'Cancelar' : '+ Novo produto' }}
       </button>
 
       <button type="button" (click)="carregarProdutos()">
@@ -20,10 +20,12 @@
     </div>
   </div>
 
-  <!-- FORMULÁRIO DE CADASTRO -->
+  <!-- FORMULÁRIO DE CADASTRO E EDIÇÃO -->
   <div class="formulario-produto" *ngIf="mostrarFormulario">
 
-    <h3>Novo produto</h3>
+    <h3>
+      {{ produtoEmEdicao !== null ? 'Editar produto' : 'Novo produto' }}
+    </h3>
 
     <form (ngSubmit)="salvarProduto()">
 
@@ -116,12 +118,13 @@
       </div>
 
       <button type="submit" [disabled]="salvando">
-        {{ salvando ? 'Salvando...' : 'Salvar produto' }}
+        {{ salvando ? 'Salvando...' :
+           (produtoEmEdicao !== null ? 'Salvar alterações' : 'Salvar produto') }}
       </button>
 
       <button
         type="button"
-        (click)="mostrarFormulario = false">
+        (click)="mostrarFormulario = false; limparFormulario()">
         Cancelar
       </button>
 
@@ -167,6 +170,35 @@
         <strong>Unidade:</strong>
         {{ produto.unidade || 'Não informada' }}
       </p>
+
+      <p>
+        <strong>Situação:</strong>
+        {{ produto.ativoProdutoServico === 'S' ? 'Ativo' : 'Inativo' }}
+      </p>
+
+      <div class="acoes-card">
+
+        <button
+          type="button"
+          *ngIf="produto.ativoProdutoServico === 'S' || produto.iditemNavigation?.ativoProdutoServico === 'S'"
+          (click)="adicionarAoCarrinho(produto)">
+          Adicionar ao carrinho
+        </button>
+      
+        <button
+          type="button"
+          (click)="editarProduto(produto)">
+          Editar
+        </button>
+      
+        <button
+          type="button"
+          *ngIf="produto.ativoProdutoServico === 'S' && produto.iditem != null"
+          (click)="desativarProduto(produto.iditem!)">
+          Desativar
+        </button>
+      
+      </div>
 
     </article>
   </div>

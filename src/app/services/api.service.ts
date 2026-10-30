@@ -53,6 +53,45 @@ export class ApiService {
     );
   }
 
+  
+  // SERVIÇOS
+
+  // Listar todos os serviços
+  servicos(): Observable<Produto[]> {
+    return this.http.get<Produto[]>(`${API}/Servico`);
+  }
+
+  // Consultar um serviço pelo ID
+  servico(id: number): Observable<Produto> {
+    return this.http.get<Produto>(`${API}/Servico/${id}`);
+  }
+
+  // Cadastrar um serviço
+  criarServico(dados: unknown): Observable<unknown> {
+    return this.http.post(`${API}/Servico`, dados);
+  }
+
+  // Atualizar um serviço
+  atualizarServico(
+    id: number,
+    dados: unknown
+  ): Observable<unknown> {
+    return this.http.put(`${API}/Servico/${id}`, dados);
+  }
+
+  // Desativar um serviço
+  desativarServico(id: number): Observable<unknown> {
+    return this.http.patch(
+      `${API}/Servico/${id}/desativar`,
+      {}
+    );
+  }
+
+
+
+
+
+
   // CLIENTES / PESSOAS
 
   // Listar todas as pessoas

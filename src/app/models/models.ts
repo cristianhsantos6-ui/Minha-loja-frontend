@@ -12,7 +12,15 @@ export interface Produto {
   ativoProdutoServico?: string;
   codigoPreco?: number;
   unidade?: string;
-  iditemNavigation?: { item1?: string; descricaoItem?: string; preco?: number; tipoItem?: string; idcategoria?: number };
+
+  iditemNavigation?: {
+    item1?: string;
+    descricaoItem?: string;
+    preco?: number;
+    tipoItem?: string;
+    idcategoria?: number;
+    ativoProdutoServico?: string;
+  };
 }
 export interface Pessoa {
   idpessoa?: number;
@@ -52,4 +60,13 @@ export interface AtendimentoItem {
 export interface Categoria {
   idcategoria?: number;
   categoria: string;
+}
+
+export interface ItemCarrinho {
+  iditem: number;
+  nome: string;
+  descricao: string;
+  preco: number;
+  tipo: 'P' | 'S';
+  quantidade: number;
 }
