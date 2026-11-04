@@ -1,90 +1,165 @@
 
 .container-servicos {
-    padding: 24px;
-    color: #333;
+  padding: 30px;
+  color: #333;
+  background-color: #f7f6fb;
+  min-height: 100%;
+  border-radius: 12px;
+}
+
+/* TÍTULOS */
+.container-servicos h2 {
+  margin-bottom: 8px;
+  color: #7041a6;
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.container-servicos h3 {
+  margin: 20px 0 18px;
+  color: #513477;
+  font-size: 20px;
+}
+
+/* TEXTOS */
+.container-servicos p {
+  margin: 12px 0;
+  color: #777;
+}
+
+/* BOTÕES GERAIS */
+.container-servicos button {
+  padding: 10px 18px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  background-color: #7041a6;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.container-servicos button:hover {
+  background-color: #593286;
+  transform: translateY(-1px);
+}
+
+.container-servicos button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* FORMULÁRIO */
+.container-servicos form {
+  background-color: white;
+  padding: 24px;
+  margin-top: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  max-width: 650px;
+}
+
+/* LABELS */
+.container-servicos label {
+  display: block;
+  margin: 15px 0 7px;
+  color: #51465e;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* CAMPOS */
+.container-servicos input,
+.container-servicos select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 12px;
+  border: 1px solid #ded9e7;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  background-color: #fff;
+  transition: 0.2s;
+}
+
+.container-servicos input:focus,
+.container-servicos select:focus {
+  border-color: #8959bd;
+  box-shadow: 0 0 0 3px rgba(112, 65, 166, 0.12);
+}
+
+/* LISTAGEM */
+.container-servicos table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.container-servicos th,
+.container-servicos td {
+  padding: 15px;
+  border-bottom: 1px solid #eeeaf3;
+  text-align: left;
+  font-size: 14px;
+}
+
+.container-servicos th {
+  background-color: #eee8f6;
+  color: #593286;
+  font-weight: 700;
+}
+
+.container-servicos tr:hover {
+  background-color: #faf8fd;
+}
+
+/* BOTÕES DA TABELA */
+.container-servicos td button {
+  padding: 8px 13px;
+  margin: 3px;
+  font-size: 13px;
+}
+
+.container-servicos td button:first-child {
+  background-color: #eee5fa;
+  color: #7041a6;
+}
+
+.container-servicos td button:first-child:hover {
+  background-color: #dfcef3;
+}
+
+.container-servicos td button:last-child {
+  background-color: #fde8e8;
+  color: #c03939;
+}
+
+.container-servicos td button:last-child:hover {
+  background-color: #f8d1d1;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .container-servicos {
+    padding: 15px;
   }
-  
-  .container-servicos h2 {
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 24px;
-  }
-  
-  .container-servicos h3 {
-    margin: 20px 0 15px;
-    color: #444;
-  }
-  
-  .container-servicos button {
-    padding: 9px 16px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    background-color: #6b8e75;
-    color: white;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .container-servicos button:hover {
-    background-color: #55745e;
-  }
-  
-  .container-servicos button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-  
-  .container-servicos label {
-    display: block;
-    margin: 12px 0 5px;
-    font-weight: 600;
-  }
-  
-  .container-servicos input,
-  .container-servicos select {
-    display: block;
-    width: 100%;
-    max-width: 450px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    box-sizing: border-box;
-  }
-  
+
   .container-servicos table {
-    width: 100%;
-    margin-top: 15px;
-    border-collapse: collapse;
-    background-color: white;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
-  
-  .container-servicos th,
-  .container-servicos td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: left;
+
+  .container-servicos form {
+    padding: 16px;
   }
-  
-  .container-servicos th {
-    background-color: #f0f3f0;
-    color: #333;
-  }
-  
-  .container-servicos tr:hover {
-    background-color: #f8faf8;
-  }
-  
-  .container-servicos td button {
-    margin: 2px;
-  }
-  
-  .container-servicos p {
-    margin: 12px 0;
-  }
-  
-  .container-servicos p:has(+ h3) {
-    color: #777;
-  }
-  
+}

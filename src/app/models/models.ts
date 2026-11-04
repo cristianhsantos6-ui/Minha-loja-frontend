@@ -70,3 +70,24 @@ export interface ItemCarrinho {
   tipo: 'P' | 'S';
   quantidade: number;
 }
+
+export interface Funcionario {
+  idPessoa?: number;
+  nome: string;
+  cpf: number | string;
+  dataNascimento: string;
+  sexo: string;
+  email: string;
+  telefone: number | string;
+  ativoPessoa?: string;
+
+  cargo: string;
+  dataAdmissao: string;
+
+  enderecos?: Endereco[];
+
+  // Campos usados no formulário
+  cep?: string;
+  numero?: number | string;
+  complemento?: string;
+}

@@ -1,0 +1,274 @@
+
+/* ===== CONFIGURAÇÃO GERAL ===== */
+
+.funcionarios-container {
+    padding: 20px;
+    background-color: #f8f7f4;
+    min-height: 100vh;
+    color: #29243a;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .funcionarios-container h2 {
+    color: #29243a;
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  
+  .funcionarios-container > p {
+    color: #6b6675;
+    margin-bottom: 20px;
+  }
+  
+  /* ===== BOTÕES ===== */
+  
+  .funcionarios-container button {
+    border: none;
+    border-radius: 9px;
+    padding: 10px 17px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .funcionarios-container button:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+  }
+  
+  /* Botão Novo Funcionário */
+  
+  .funcionarios-container > button {
+    background-color: #6635c7;
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  /* ===== FORMULÁRIO ===== */
+  
+  .funcionarios-container form {
+    background-color: white;
+    border: 1px solid #e5e0ee;
+    border-radius: 12px;
+    padding: 22px;
+    max-width: 650px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+  }
+  
+  .funcionarios-container form h3 {
+    color: #5424a8;
+    margin: 10px 0 18px;
+  }
+  
+  .funcionarios-container form label {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 13px 0 6px;
+  }
+  
+  .funcionarios-container form input,
+  .funcionarios-container form select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px;
+    border: 1px solid #dcd6e7;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    background-color: #fff;
+  }
+  
+  .funcionarios-container form input:focus,
+  .funcionarios-container form select:focus {
+    border-color: #7544d4;
+    box-shadow: 0 0 0 2px rgba(117, 68, 212, 0.12);
+  }
+  
+  .botoes-formulario {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+  }
+  
+  .botoes-formulario button:first-child {
+    background-color: #6635c7;
+    color: white;
+  }
+  
+  .botoes-formulario button:last-child {
+    background-color: #eeeeef;
+    color: #393342;
+  }
+  
+  /* ===== MENSAGENS ===== */
+  
+  .mensagem-erro {
+    background-color: #ffe5e5;
+    color: #b42318;
+    padding: 12px;
+    border-radius: 8px;
+  }
+  
+  .mensagem-sucesso {
+    background-color: #e2f7e8;
+    color: #18743a;
+    padding: 12px;
+    border-radius: 8px;
+  }
+  
+  /* ===== PESQUISA ===== */
+  
+  .pesquisa-funcionarios {
+    margin: 25px 0 18px;
+  }
+  
+  .pesquisa-funcionarios h3 {
+    color: #29243a;
+    margin-bottom: 12px;
+  }
+  
+  .pesquisa-funcionarios label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 7px;
+  }
+  
+  .pesquisa-funcionarios input {
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+    padding: 11px;
+    border: 1px solid #ded9e8;
+    border-radius: 9px;
+    outline: none;
+  }
+  
+  .pesquisa-funcionarios input:focus {
+    border-color: #7544d4;
+  }
+  
+  /* ===== LISTA DE FUNCIONÁRIOS EM CARTÕES ===== */
+  
+  .funcionarios-container table {
+    width: 100%;
+    max-width: 650px;
+    border-collapse: separate;
+    border-spacing: 0 14px;
+  }
+  
+  /* Esconde o cabeçalho da tabela */
+  
+  .funcionarios-container thead {
+    display: none;
+  }
+  
+  /* Cada linha vira um cartão */
+  
+  .funcionarios-container tbody tr {
+    display: block;
+    background-color: white;
+    border: 1px solid #e7e1ef;
+    border-radius: 13px;
+    padding: 18px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+  
+  /* Informações do funcionário */
+  
+  .funcionarios-container tbody td {
+    display: block;
+    border: none;
+    padding: 4px 0;
+    font-size: 14px;
+    color: #625d6b;
+  }
+  
+  /* Nome */
+  
+  .funcionarios-container tbody td:nth-child(2) {
+    color: #5424a8;
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  /* Identificação dos campos */
+  
+  .funcionarios-container tbody td:nth-child(1)::before {
+    content: "ID: ";
+    font-weight: bold;
+    color: #29243a;
+  }
+  
+  .funcionarios-container tbody td:nth-child(3)::before {
+    content: "CPF: ";
+    font-weight: bold;
+    color: #29243a;
+  }
+  
+  .funcionarios-container tbody td:nth-child(4)::before {
+    content: "Cargo: ";
+    font-weight: bold;
+    color: #29243a;
+  }
+  
+  .funcionarios-container tbody td:nth-child(5)::before {
+    content: "E-mail: ";
+    font-weight: bold;
+    color: #29243a;
+  }
+  
+  /* Área dos botões */
+  
+  .funcionarios-container tbody td:nth-child(6) {
+    display: flex;
+    gap: 9px;
+    margin-top: 13px;
+  }
+  
+  .funcionarios-container tbody td:nth-child(6) button:first-child {
+    background-color: #eee8ff;
+    color: #5424a8;
+  }
+  
+  .funcionarios-container tbody td:nth-child(6) button:last-child {
+    background-color: #ffe4e4;
+    color: #bd2424;
+  }
+  
+  /* Mensagem quando não há funcionários */
+  
+  .funcionarios-container tbody tr td[colspan="6"] {
+    text-align: center;
+    color: #77717e;
+    padding: 15px;
+  }
+  
+  /* ===== CELULAR ===== */
+  
+  @media (max-width: 600px) {
+    .funcionarios-container {
+      padding: 14px;
+    }
+  
+    .funcionarios-container form {
+      padding: 15px;
+    }
+  
+    .funcionarios-container table {
+      width: 100%;
+    }
+  
+    .funcionarios-container tbody tr {
+      padding: 15px;
+    }
+  
+    .funcionarios-container tbody td {
+      overflow-wrap: anywhere;
+    }
+  }
+  

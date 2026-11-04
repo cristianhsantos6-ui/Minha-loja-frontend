@@ -7,7 +7,8 @@ import {
   Atendimento,
   Categoria,
   Pessoa,
-  Produto
+  Produto,
+  Funcionario
 } from '../models/models';
 
 // Endereço principal da API
@@ -88,7 +89,35 @@ export class ApiService {
   }
 
 
+// FUNCIONÁRIOS
 
+// Listar todos os funcionários
+funcionarios(): Observable<Funcionario[]> {
+  return this.http.get<Funcionario[]>(`${API}/Funcionario`);
+}
+
+// Consultar funcionário pelo ID
+funcionario(id: number): Observable<Funcionario> {
+  return this.http.get<Funcionario>(`${API}/Funcionario/${id}`);
+}
+
+// Cadastrar funcionário
+criarFuncionario(dados: Funcionario): Observable<unknown> {
+  return this.http.post(`${API}/Funcionario`, dados);
+}
+
+// Atualizar funcionário
+atualizarFuncionario(
+  id: number,
+  dados: Funcionario
+): Observable<unknown> {
+  return this.http.put(`${API}/Funcionario/${id}`, dados);
+}
+
+// Excluir funcionário
+excluirFuncionario(id: number): Observable<unknown> {
+  return this.http.delete(`${API}/Funcionario/${id}`);
+}
 
 
 
