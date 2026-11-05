@@ -186,6 +186,23 @@ export class FuncionariosComponent implements OnInit {
     this.mostrarFormulario = true;
   }
 
+  get funcionariosFiltrados(): Funcionario[] {
+    const termo = this.pesquisa.trim().toLowerCase();
+  
+    return this.funcionarios.filter(f =>
+      String(f.idPessoa ?? '').includes(termo) ||
+      (f.nome ?? '').toLowerCase().includes(termo)
+    );
+  }
+
+
+
+
+
+
+
+
+
   // EXCLUIR FUNCIONÁRIO
   excluirFuncionario(id: number): void {
 

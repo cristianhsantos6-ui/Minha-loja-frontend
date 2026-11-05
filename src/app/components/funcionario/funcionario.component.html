@@ -173,7 +173,7 @@
 
     <tbody>
 
-      <tr *ngFor="let funcionario of funcionarios">
+      <tr *ngFor="let funcionario of funcionariosFiltrados">
 
         <td>{{ funcionario.idPessoa }}</td>
         <td>{{ funcionario.nome }}</td>
@@ -199,7 +199,7 @@
 
       </tr>
 
-      <tr *ngIf="funcionarios.length === 0">
+      <tr *ngIf="funcionariosFiltrados.length === 0">
         <td colspan="6">
           Nenhum funcionário cadastrado.
         </td>
