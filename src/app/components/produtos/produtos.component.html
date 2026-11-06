@@ -78,7 +78,7 @@
         step="0.01"
       />
 
-      <label for="codigoPreco">Código do preço</label>
+      <label for="codigoProduto">Código do produto</label>
       <input
         id="codigoPreco"
         type="number"
@@ -163,7 +163,11 @@
 
       <p>
         <strong>Tipo:</strong>
-        {{ produto.tipoItem || produto.iditemNavigation?.tipoItem || 'Não informado' }}
+        {{
+          (produto.tipoItem || produto.iditemNavigation?.tipoItem) === 'P'
+            ? 'Produto'
+            : 'Serviço'
+        }}
       </p>
 
       <p>
@@ -173,7 +177,11 @@
 
       <p>
         <strong>Situação:</strong>
-        {{ produto.ativoProdutoServico === 'S' ? 'Ativo' : 'Inativo' }}
+        {{
+          (produto.ativoProdutoServico || produto.iditemNavigation?.ativoProdutoServico) === 'S'
+            ? 'Ativo'
+            : 'Inativo'
+        }}
       </p>
 
       <div class="acoes-card">
@@ -193,7 +201,7 @@
       
         <button
           type="button"
-          *ngIf="produto.ativoProdutoServico === 'S' && produto.iditem != null"
+           *ngIf="(produto.ativoProdutoServico || produto.iditemNavigation?.ativoProdutoServico) === 'S' && produto.iditem != null"
           (click)="desativarProduto(produto.iditem!)">
           Desativar
         </button>
