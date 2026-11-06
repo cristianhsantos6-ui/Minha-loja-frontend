@@ -1,0 +1,110 @@
+
+<section class="categoria-container">
+
+    <h2>Categorias</h2>
+  
+    <p>Gerenciamento das categorias da loja.</p>
+  
+    <button type="button" (click)="novaCategoria()">
+      Nova Categoria
+    </button>
+  
+    <!-- MENSAGENS -->
+    <p *ngIf="sucesso" class="mensagem-sucesso">
+      {{ sucesso }}
+    </p>
+  
+    <p *ngIf="erro" class="mensagem-erro">
+      {{ erro }}
+    </p>
+  
+    <!-- FORMULÁRIO -->
+    <div *ngIf="mostrarFormulario">
+  
+      <h3>
+        {{ idCategoria === null ? 'Cadastro de Categoria' : 'Editar Categoria' }}
+      </h3>
+  
+      <form (ngSubmit)="salvarCategoria()">
+  
+        <label>Nome da Categoria:</label>
+  
+        <input
+          type="text"
+          name="categoria"
+          [(ngModel)]="categoria"
+          placeholder="Digite o nome da categoria"
+          required
+        >
+  
+        <br><br>
+  
+        <button type="submit">
+          Salvar
+        </button>
+  
+        <button
+          type="button"
+          (click)="cancelarFormulario()">
+          Cancelar
+        </button>
+  
+      </form>
+  
+    </div>
+  
+    <hr>
+  
+    <!-- LISTAGEM -->
+    <h3>Categorias cadastradas</h3>
+  
+    <p *ngIf="carregando">
+      Carregando categorias...
+    </p>
+  
+    <p *ngIf="!carregando && categorias.length === 0">
+      Nenhuma categoria cadastrada.
+    </p>
+  
+    <table *ngIf="categorias.length > 0">
+  
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Categoria</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+  
+        <tr *ngFor="let categoria of categorias">
+  
+          <td>{{ categoria.idcategoria }}</td>
+  
+          <td>{{ categoria.categoria }}</td>
+  
+          <td>
+  
+            <button
+              type="button"
+              (click)="editarCategoria(categoria)">
+              Editar
+            </button>
+  
+            <button
+              type="button"
+              (click)="excluirCategoria(categoria.idcategoria!)">
+              Excluir
+            </button>
+  
+          </td>
+  
+        </tr>
+  
+      </tbody>
+  
+    </table>
+  
+  </section>
+  

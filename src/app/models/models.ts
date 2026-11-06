@@ -57,10 +57,7 @@ export interface AtendimentoItem {
   quantidade: number;
   valorUnitario: number;
 }
-export interface Categoria {
-  idcategoria?: number;
-  categoria: string;
-}
+
 
 export interface ItemCarrinho {
   iditem: number;
@@ -90,4 +87,9 @@ export interface Funcionario {
   cep?: string;
   numero?: number | string;
   complemento?: string;
+}
+
+export interface Categoria {
+  idcategoria?: number;
+  categoria: string;
 }

@@ -165,10 +165,29 @@ excluirFuncionario(id: number): Observable<unknown> {
     return this.http.post(`${API}/Atendimento`, dados);
   }
 
+  
   // CATEGORIAS
 
   // Listar categorias
   categorias(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(`${API}/Categorium`);
+  }
+
+  // Cadastrar categoria
+  criarCategoria(dados: Categoria): Observable<unknown> {
+    return this.http.post(`${API}/Categorium`, dados);
+  }
+
+  // Atualizar categoria
+  atualizarCategoria(
+    id: number,
+    dados: Categoria
+  ): Observable<unknown> {
+    return this.http.put(`${API}/Categorium/${id}`, dados);
+  }
+
+  // Excluir categoria
+  excluirCategoria(id: number): Observable<unknown> {
+    return this.http.delete(`${API}/Categorium/${id}`);
   }
 }

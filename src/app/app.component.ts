@@ -20,7 +20,7 @@ import { ServicosComponent } from './servicos/servicos.component';
 import { CarrinhoComponent } from './components/carrinho/carrinho.component';
 import { ItemCarrinho } from './models/models';
 import { FuncionariosComponent} from './components/funcionario/funcionario.component';
-
+import { CategoriaComponent } from './components/categoria/categoria.component';
 type Aba =
   | 'inicio'
   | 'produtos'
@@ -29,7 +29,8 @@ type Aba =
   | 'categorias'
   | 'servicos'
   | 'carrinho'
-  | 'funcionarios';
+  | 'funcionarios'
+  | 'categoria';
 
 @Component({
   selector: 'app-root',
@@ -43,7 +44,8 @@ type Aba =
     ProdutosComponent,
     ServicosComponent,
     CarrinhoComponent,
-    FuncionariosComponent
+    FuncionariosComponent,
+    CategoriaComponent
   ],
   templateUrl: './app.component.html'
 })
