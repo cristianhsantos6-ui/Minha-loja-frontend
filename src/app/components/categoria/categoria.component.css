@@ -1,0 +1,271 @@
+
+/* CONTAINER PRINCIPAL */
+.categoria-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 25px auto;
+    padding: 25px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    overflow-x: auto;
+  }
+  
+  /* TÍTULOS */
+  .categoria-container h2 {
+    font-size: 25px;
+    color: #1e293b;
+    margin-bottom: 8px;
+  }
+  
+  .categoria-container h3 {
+    font-size: 19px;
+    color: #334155;
+    margin: 22px 0 15px;
+  }
+  
+  .categoria-container > p {
+    color: #64748b;
+    margin-bottom: 20px;
+  }
+  
+  /* BOTÕES GERAIS */
+  .categoria-container button {
+    border: none;
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+  }
+  
+  .categoria-container button:hover {
+    transform: translateY(-1px);
+  }
+  
+  .categoria-container button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  /* NOVA CATEGORIA */
+  .categoria-container > button {
+    background-color: #2563eb;
+    color: white;
+    margin-bottom: 15px;
+  }
+  
+  .categoria-container > button:hover {
+    background-color: #5c0ec8;
+  }
+  
+  /* FORMULÁRIO */
+  .categoria-container form {
+    max-width: 550px;
+    padding: 22px;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+  }
+  
+  .categoria-container label {
+    display: block;
+    margin-bottom: 9px;
+    color: #334155;
+    font-weight: 600;
+  }
+  
+  .categoria-container input {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background-color: #fff;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .categoria-container input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  }
+  
+  /* BOTÃO SALVAR */
+  .categoria-container button[type="submit"] {
+    background-color: #16a34a;
+    color: white;
+  }
+  
+  .categoria-container button[type="submit"]:hover {
+    background-color: #15803d;
+  }
+  
+  /* BOTÃO CANCELAR */
+  .categoria-container form button[type="button"] {
+    background-color: #64748b;
+    color: white;
+    margin-left: 6px;
+  }
+  
+  /* CONSULTA POR ID */
+  .consulta-categoria {
+    margin: 25px 0;
+    padding: 20px;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+  }
+  
+  .consulta-categoria h3 {
+    margin-top: 0;
+  }
+  
+  .consulta-categoria input {
+    max-width: 350px;
+    margin-right: 10px;
+  }
+  
+  .consulta-categoria button {
+    background-color: #5b35f1;
+    color: white;
+    margin-top: 10px;
+  }
+  
+  /* RESULTADO DA CONSULTA */
+  .resultado-consulta {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+  }
+  
+  .resultado-consulta p {
+    color: #334155;
+    margin: 10px 0;
+  }
+  
+  .resultado-consulta button {
+    background-color: #64748b;
+    color: white;
+    margin-top: 10px;
+  }
+  
+  /* MENSAGENS */
+  .mensagem-sucesso {
+    padding: 13px;
+    background-color: #dcfce7;
+    color: #166534 !important;
+    border: 1px solid #86efac;
+    border-radius: 6px;
+  }
+  
+  .mensagem-erro {
+    padding: 13px;
+    background-color: #fee2e2;
+    color: #991b1b !important;
+    border: 1px solid #fca5a5;
+    border-radius: 6px;
+  }
+  
+  /* DIVISÓRIA */
+  .categoria-container hr {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 28px 0;
+  }
+  
+  /* TABELA */
+  .categoria-container table {
+    width: 100%;
+    min-width: 450px;
+    border-collapse: collapse;
+    margin-top: 15px;
+    table-layout: auto;
+  }
+  
+  .categoria-container th {
+    padding: 15px 12px;
+    background-color: #f1f5f9;
+    color: #334155;
+    font-weight: 600;
+    text-align: left;
+  }
+  
+  .categoria-container td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #475569;
+    vertical-align: middle;
+  }
+  
+  .categoria-container tbody tr:hover {
+    background-color: #f8fafc;
+  }
+  
+  .categoria-container th:first-child,
+  .categoria-container td:first-child {
+    width: 60px;
+    text-align: center;
+  }
+  
+  .categoria-container th:last-child,
+  .categoria-container td:last-child {
+    width: 190px;
+  }
+  
+  /* BOTÃO EDITAR */
+  .categoria-container td button:first-child {
+    background-color: #4361ee;
+    color: white;
+  }
+  
+  /* BOTÃO EXCLUIR */
+  .categoria-container td button:last-child {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  /* BOTÕES DA TABELA */
+  .categoria-container td button {
+    margin: 3px;
+    padding: 9px 13px;
+    white-space: nowrap;
+  }
+  
+  .categoria-container td button:hover {
+    opacity: 0.85;
+  }
+  
+  /* RESPONSIVIDADE */
+  @media (max-width: 600px) {
+    .categoria-container {
+      margin: 10px;
+      padding: 16px;
+      width: calc(100% - 20px);
+    }
+  
+    .categoria-container h2 {
+      font-size: 22px;
+    }
+  
+    .consulta-categoria input {
+      max-width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .categoria-container table {
+      min-width: 450px;
+    }
+  
+    .categoria-container form {
+      padding: 15px;
+    }
+  }
+  

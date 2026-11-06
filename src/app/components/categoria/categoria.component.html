@@ -9,6 +9,52 @@
       Nova Categoria
     </button>
   
+    <!-- CONSULTAR POR ID -->
+    <div class="consulta-categoria">
+  
+      <h3>Consultar Categoria</h3>
+  
+      <label>Pesquisar por ID:</label>
+  
+      <input
+        type="number"
+        name="idConsulta"
+        [(ngModel)]="idConsulta"
+        placeholder="Digite o ID da categoria"
+      >
+  
+      <button
+        type="button"
+        [disabled]="!idConsulta || idConsulta <= 0"
+        (click)="consultarCategoria(idConsulta!)">
+        Consultar
+      </button>
+  
+    </div>
+  
+    <!-- RESULTADO DA CONSULTA -->
+    <div *ngIf="categoriaConsultada" class="resultado-consulta">
+  
+      <h3>Dados da Categoria</h3>
+  
+      <p>
+        <strong>ID:</strong>
+        {{ categoriaConsultada.idcategoria }}
+      </p>
+  
+      <p>
+        <strong>Categoria:</strong>
+        {{ categoriaConsultada.categoria }}
+      </p>
+  
+      <button
+        type="button"
+        (click)="categoriaConsultada = null">
+        Fechar consulta
+      </button>
+  
+    </div>
+  
     <!-- MENSAGENS -->
     <p *ngIf="sucesso" class="mensagem-sucesso">
       {{ sucesso }}

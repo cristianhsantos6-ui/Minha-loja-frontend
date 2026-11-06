@@ -26,11 +26,19 @@ export class CategoriaComponent implements OnInit {
   erro: string = '';
   sucesso: string = '';
 
+
+  idConsulta: number | null = null;
+
+categoriaConsultada: Categoria | null = null;
+
   constructor(private api: ApiService) {}
 
   ngOnInit(): void {
     this.listarCategorias();
   }
+
+  
+
 
   // LISTAR CATEGORIAS
   listarCategorias(): void {
@@ -129,6 +137,29 @@ export class CategoriaComponent implements OnInit {
     this.erro = '';
     this.sucesso = '';
   }
+
+// CONSULTAR CATEGORIA PELO ID
+consultarCategoria(id: number): void {
+
+  this.erro = '';
+  this.sucesso = '';
+  this.categoriaConsultada = null;
+
+  this.api.categoria(id).subscribe({
+
+    next: (dados) => {
+      this.categoriaConsultada = dados;
+    },
+
+    error: (erro) => {
+      console.error(erro);
+      this.erro = 'Categoria não encontrada.';
+    }
+
+  });
+}
+
+
 
   // EXCLUIR CATEGORIA
   excluirCategoria(id: number): void {

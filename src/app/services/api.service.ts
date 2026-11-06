@@ -190,4 +190,12 @@ excluirFuncionario(id: number): Observable<unknown> {
   excluirCategoria(id: number): Observable<unknown> {
     return this.http.delete(`${API}/Categorium/${id}`);
   }
+
+
+// Consultar categoria pelo ID
+categoria(id: number): Observable<Categoria> {
+  return this.http.get<Categoria>(`${API}/Categorium/${id}`);
+}
+
+
 }

@@ -1,1 +1,127 @@
-<p>administrador works!</p>
+
+
+<section class="administrador-container">
+
+    <div class="cabecalho-admin">
+  
+      <div>
+        <h2>Painel Administrativo</h2>
+        <p>Resumo geral da Minha Loja.</p>
+      </div>
+  
+      <button
+        type="button"
+        (click)="carregarResumo()"
+        [disabled]="carregando">
+  
+        {{ carregando ? 'Atualizando...' : 'Atualizar dados' }}
+  
+      </button>
+  
+    </div>
+  
+    <!-- MENSAGEM DE ERRO -->
+    <p *ngIf="erro" class="mensagem-erro">
+      {{ erro }}
+    </p>
+  
+    <!-- CARREGAMENTO -->
+    <p *ngIf="carregando" class="carregando">
+      Carregando informações do painel...
+    </p>
+  
+    <!-- RESUMO GERAL -->
+    <h3>Resumo geral</h3>
+  
+    <div class="cards-resumo">
+  
+      <!-- CLIENTES -->
+      <div class="card-resumo">
+  
+        <h3>Clientes</h3>
+  
+        <p class="numero">
+          {{ totalClientes }}
+        </p>
+  
+        <span>Clientes cadastrados</span>
+  
+      </div>
+  
+      <!-- PRODUTOS -->
+      <div class="card-resumo">
+  
+        <h3>Produtos</h3>
+  
+        <p class="numero">
+          {{ totalProdutos }}
+        </p>
+  
+        <span>Produtos cadastrados</span>
+  
+      </div>
+  
+      <!-- SERVIÇOS -->
+      <div class="card-resumo">
+  
+        <h3>Serviços</h3>
+  
+        <p class="numero">
+          {{ totalServicos }}
+        </p>
+  
+        <span>Serviços cadastrados</span>
+  
+      </div>
+  
+      <!-- PEDIDOS -->
+      <div class="card-resumo">
+  
+        <h3>Pedidos</h3>
+  
+        <p class="numero">
+          {{ totalPedidos }}
+        </p>
+  
+        <span>Pedidos registrados</span>
+  
+      </div>
+  
+      <!-- ESTOQUE -->
+      <div class="card-resumo">
+  
+        <h3>Estoque</h3>
+  
+        <p class="numero" *ngIf="estoqueIntegrado">
+          {{ totalEstoque }}
+        </p>
+  
+        <p class="pendente" *ngIf="!estoqueIntegrado">
+          Pendente
+        </p>
+  
+        <span>Integração com a API de estoque</span>
+  
+      </div>
+  
+    </div>
+  
+    <hr>
+  
+    <div class="informacao-admin">
+  
+      <h3>Informações do sistema</h3>
+  
+      <p>
+        Este painel apresenta um resumo dos dados cadastrados
+        e registrados na  Loja.
+      </p>
+  
+      <p>
+        Os números são obtidos diretamente da API do sistema.
+      </p>
+  
+    </div>
+  
+  </section>
+  

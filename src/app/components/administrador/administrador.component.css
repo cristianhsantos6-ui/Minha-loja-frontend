@@ -1,0 +1,165 @@
+
+/* CONTAINER PRINCIPAL */
+.administrador-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 25px auto;
+    padding: 25px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  /* CABEÇALHO */
+  .cabecalho-admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  
+  .cabecalho-admin h2 {
+    color: #1e293b;
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+  
+  .cabecalho-admin p {
+    color: #64748b;
+  }
+  
+  /* BOTÃO ATUALIZAR */
+  .cabecalho-admin button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 11px 18px;
+    cursor: pointer;
+  }
+  
+  .cabecalho-admin button:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .cabecalho-admin button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  /* TÍTULOS */
+  .administrador-container > h3 {
+    color: #334155;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  
+  /* CARDS */
+  .cards-resumo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 20px;
+  }
+  
+  /* CARD INDIVIDUAL */
+  .card-resumo {
+    padding: 22px;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 9px;
+    border-left: 5px solid #2563eb;
+    transition: transform 0.2s;
+  }
+  
+  .card-resumo:hover {
+    transform: translateY(-3px);
+  }
+  
+  .card-resumo h3 {
+    font-size: 17px;
+    color: #334155;
+    margin-bottom: 15px;
+  }
+  
+  .card-resumo .numero {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2563eb;
+    margin-bottom: 8px;
+  }
+  
+  .card-resumo span {
+    font-size: 13px;
+    color: #64748b;
+  }
+  
+  .card-resumo .pendente {
+    font-size: 20px;
+    font-weight: bold;
+    color: #d97706;
+    margin-bottom: 8px;
+  }
+  
+  /* MENSAGENS */
+  .mensagem-erro {
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 13px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  
+  .carregando {
+    color: #2563eb;
+    margin-bottom: 20px;
+  }
+  
+  /* DIVISÓRIA */
+  .administrador-container hr {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 30px 0;
+  }
+  
+  /* INFORMAÇÕES */
+  .informacao-admin {
+    padding: 20px;
+    background-color: #f8fafc;
+    border-radius: 8px;
+  }
+  
+  .informacao-admin h3 {
+    color: #334155;
+    margin-bottom: 12px;
+  }
+  
+  .informacao-admin p {
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  
+  /* RESPONSIVIDADE */
+  @media (max-width: 600px) {
+  
+    .administrador-container {
+      padding: 16px;
+      margin: 10px;
+      width: calc(100% - 20px);
+    }
+  
+    .cabecalho-admin {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  
+    .cards-resumo {
+      grid-template-columns: 1fr;
+    }
+  
+  }
+  

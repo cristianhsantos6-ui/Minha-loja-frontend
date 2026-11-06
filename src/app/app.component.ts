@@ -21,6 +21,7 @@ import { CarrinhoComponent } from './components/carrinho/carrinho.component';
 import { ItemCarrinho } from './models/models';
 import { FuncionariosComponent} from './components/funcionario/funcionario.component';
 import { CategoriaComponent } from './components/categoria/categoria.component';
+import { AdministradorComponent } from './components/administrador/administrador.component';
 type Aba =
   | 'inicio'
   | 'produtos'
@@ -30,8 +31,9 @@ type Aba =
   | 'servicos'
   | 'carrinho'
   | 'funcionarios'
-  | 'categoria';
-
+  | 'categoria'
+  | 'administrador'
+  | 'AdministradorComponent';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -45,7 +47,9 @@ type Aba =
     ServicosComponent,
     CarrinhoComponent,
     FuncionariosComponent,
-    CategoriaComponent
+    CategoriaComponent,
+    AdministradorComponent
+
   ],
   templateUrl: './app.component.html'
 })
