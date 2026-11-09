@@ -93,3 +93,19 @@ export interface Categoria {
   idcategoria?: number;
   categoria: string;
 }
+
+// ESTOQUE
+export interface Estoque {
+  iditem: number;
+  quantidadeEstoque: number;
+}
+
+// ENTRADA DE PRODUTOS
+export interface EntradaProduto {
+  identradaProduto?: number;
+  iditem: number;
+  dataEntradaProduto: string;
+  quantidadeEntrada: number;
+  unidade: string;
+  valorUnitarioEntrada: number;
+}

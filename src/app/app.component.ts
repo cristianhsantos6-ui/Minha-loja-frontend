@@ -22,6 +22,9 @@ import { ItemCarrinho } from './models/models';
 import { FuncionariosComponent} from './components/funcionario/funcionario.component';
 import { CategoriaComponent } from './components/categoria/categoria.component';
 import { AdministradorComponent } from './components/administrador/administrador.component';
+import { EstoqueComponent } from './components/estoque/estoque.component';
+
+
 type Aba =
   | 'inicio'
   | 'produtos'
@@ -31,6 +34,7 @@ type Aba =
   | 'servicos'
   | 'carrinho'
   | 'funcionarios'
+  | 'estoque'
   | 'categoria'
   | 'administrador'
   | 'AdministradorComponent';
@@ -48,7 +52,8 @@ type Aba =
     CarrinhoComponent,
     FuncionariosComponent,
     CategoriaComponent,
-    AdministradorComponent
+    AdministradorComponent,
+    EstoqueComponent
 
   ],
   templateUrl: './app.component.html'

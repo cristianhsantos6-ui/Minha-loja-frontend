@@ -8,7 +8,9 @@ import {
   Categoria,
   Pessoa,
   Produto,
-  Funcionario
+  Funcionario,
+  Estoque,
+  EntradaProduto
 } from '../models/models';
 
 // Endereço principal da API
@@ -196,6 +198,34 @@ excluirFuncionario(id: number): Observable<unknown> {
 categoria(id: number): Observable<Categoria> {
   return this.http.get<Categoria>(`${API}/Categorium/${id}`);
 }
+
+
+// ESTOQUE
+
+// Listar todos os estoques
+estoques(): Observable<Estoque[]> {
+  return this.http.get<Estoque[]>(`${API}/Estoque`);
+}
+
+// Consultar estoque pelo ID do produto
+estoque(id: number): Observable<Estoque> {
+  return this.http.get<Estoque>(`${API}/Estoque/${id}`);
+}
+
+
+// ENTRADA DE PRODUTOS
+
+// Listar todas as entradas
+entradas(): Observable<EntradaProduto[]> {
+  return this.http.get<EntradaProduto[]>(`${API}/EntradaProduto`);
+}
+
+// Cadastrar entrada de produto
+criarEntrada(dados: EntradaProduto): Observable<unknown> {
+  return this.http.post(`${API}/EntradaProduto`, dados);
+}
+
+
 
 
 }

@@ -1,0 +1,152 @@
+
+
+
+<div class="estoque-container">
+
+    <h2>Controle de Estoque</h2>
+    <p>Consulte as quantidades disponíveis e registre entradas de produtos.</p>
+  
+    <!-- Mensagens -->
+    <div class="mensagem sucesso" *ngIf="mensagem">
+      {{ mensagem }}
+    </div>
+  
+    <div class="mensagem erro" *ngIf="erro">
+      {{ erro }}
+    </div>
+  
+    <!-- Consulta por ID -->
+    <section class="card">
+      <h3>Consultar estoque</h3>
+  
+      <div class="pesquisa">
+        <input
+          type="number"
+          [(ngModel)]="pesquisaId"
+          placeholder="Digite o ID do produto">
+  
+        <button type="button" (click)="consultarPorId()">
+          Consultar
+        </button>
+  
+        <button type="button" class="secundario" (click)="listarTodos()">
+          Listar todos
+        </button>
+      </div>
+  
+      <table>
+        <thead>
+          <tr>
+            <th>ID do produto</th>
+            <th>Quantidade disponível</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr *ngFor="let estoque of estoques">
+            <td>{{ estoque.iditem }}</td>
+            <td>{{ estoque.quantidadeEstoque }}</td>
+          </tr>
+  
+          <tr *ngIf="estoques.length === 0">
+            <td colspan="2">Nenhum estoque encontrado.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  
+    <!-- Cadastro de entrada -->
+    <section class="card">
+      <h3>Registrar entrada de produtos</h3>
+  
+      <form (ngSubmit)="cadastrarEntrada()">
+  
+        <div class="campo">
+          <label>ID do produto</label>
+          <input
+            type="number"
+            name="iditem"
+            [(ngModel)]="novaEntrada.iditem"
+            required>
+        </div>
+  
+        <div class="campo">
+          <label>Data da entrada</label>
+          <input
+            type="date"
+            name="dataEntradaProduto"
+            [(ngModel)]="novaEntrada.dataEntradaProduto"
+            required>
+        </div>
+  
+        <div class="campo">
+          <label>Quantidade</label>
+          <input
+            type="number"
+            name="quantidadeEntrada"
+            [(ngModel)]="novaEntrada.quantidadeEntrada"
+            min="1"
+            step="1"
+            required>
+        </div>
+  
+        <div class="campo">
+          <label>Unidade</label>
+          <input
+            type="text"
+            name="unidade"
+            [(ngModel)]="novaEntrada.unidade"
+            required>
+        </div>
+  
+        <div class="campo">
+          <label>Valor unitário</label>
+          <input
+            type="number"
+            name="valorUnitarioEntrada"
+            [(ngModel)]="novaEntrada.valorUnitarioEntrada"
+            min="0"
+            step="0.01"
+            required>
+        </div>
+  
+        <button type="submit">Registrar entrada</button>
+  
+      </form>
+    </section>
+  
+    <!-- Histórico de entradas -->
+    <section class="card">
+      <h3>Histórico de entradas</h3>
+  
+      <table>
+        <thead>
+          <tr>
+            <th>ID da entrada</th>
+            <th>ID do produto</th>
+            <th>Data</th>
+            <th>Quantidade</th>
+            <th>Unidade</th>
+            <th>Valor unitário</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr *ngFor="let entrada of entradas">
+            <td>{{ entrada.identradaProduto }}</td>
+            <td>{{ entrada.iditem }}</td>
+            <td>{{ entrada.dataEntradaProduto }}</td>
+            <td>{{ entrada.quantidadeEntrada }}</td>
+            <td>{{ entrada.unidade }}</td>
+            <td>{{ entrada.valorUnitarioEntrada | currency:'BRL' }}</td>
+          </tr>
+  
+          <tr *ngIf="entradas.length === 0">
+            <td colspan="6">Nenhuma entrada registrada.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  
+  </div>
+  

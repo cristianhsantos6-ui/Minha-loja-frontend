@@ -1,0 +1,111 @@
+
+.estoque-container {
+    padding: 20px;
+  }
+  
+  h2 {
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  h3 {
+    color: #444;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    color: #666;
+  }
+  
+  .card {
+    background: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    overflow-x: auto;
+  }
+  
+  .pesquisa {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .pesquisa input {
+    width: 220px;
+  }
+  
+  .campo {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 6px;
+    color: #444;
+    font-weight: 500;
+  }
+  
+  button {
+    background: #38765b;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background: #285941;
+  }
+  
+  button.secundario {
+    background: #666;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background: #f2f2f2;
+  }
+  
+  .mensagem {
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 5px;
+  }
+  
+  .sucesso {
+    background: #e1f3e7;
+    color: #24643a;
+  }
+  
+  .erro {
+    background: #fce5e5;
+    color: #a12626;
+  }
+  
+  form button {
+    margin-top: 5px;
+  }
+  
